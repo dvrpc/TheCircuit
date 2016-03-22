@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>The Circuit</title>
+
+    <!-- Core CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/typeahead.js-bootstrap.css" rel="stylesheet" type="text/css"> <!--https://github.com/jharding/typeahead.js-bootstrap.css-->
+    <link href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    
+    <!--[if lte IE 8]>
+        <link href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" rel="stylesheet" type="text/css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet">
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+    <![endif]-->
+  
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+			<span>	
+                <a  href="http://www.dvrpc.org" target="_new"><img class="pull-left" style="margin:10px 0px 0px 15px" src="img/dvrpc_logo_small.png"/></a> 
+              <!--   <img class="pull-left" style="margin:5px 0px 0px 10px" src="img/circuit_banner.png"/> -->
+                <a class="navbar-brand" href="#">The Circuit - Greater Philadelphia's Regional Trail Network</a> 
+			</span> 
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right" id="navright">
+                <li>
+                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#aboutModal').modal('show'); return false;" ><i class="glyphicon glyphicon-info-sign" style="color: white"></i>&nbsp;&nbsp;About</a>
+                </li>
+                
+                <li>
+                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#legendModal').modal('show'); return false;"><i class="icon-picture" style="color:white;"></i>&nbsp;&nbsp;Legend</a>
+                </li>
+                
+                <li class="dropdown">    
+                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-wrench" style="color: white"></i>&nbsp;&nbsp;Tools and Data <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+				        <li id="zoomToRegion"><a href="javascript:void(0);"><i class="icon-fullscreen"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
+                        <li class="divider"></li>
+                            <li><a href="#" onclick="$('#aboutDownload').modal('show'); return false;"><i class="glyphicon glyphicon-download-alt"></i>&nbsp;&nbsp;Download Data</a>
+                            </li>
+                    </ul>
+                </li>
+                <li><a id="dropdown" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe" style="color:white"></i>&nbsp;&nbsp;Zoom to<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li id="zoomToStudy1"><a href="javascript:void(0);">&nbsp;&nbsp; Bucks County</a></li>
+                        <li id="zoomToStudy2"><a href="javascript:void(0);">&nbsp;&nbsp; Chester County</a></li>
+                        <li id="zoomToStudy3"><a href="javascript:void(0);">&nbsp;&nbsp; Delaware County</a></li>
+                        <li id="zoomToStudy4"><a href="javascript:void(0);">&nbsp;&nbsp; Montgomery County</a></li>
+                        <li id="zoomToStudy5"><a href="javascript:void(0);">&nbsp;&nbsp; Philadelphia County</a></li>
+                        <li id="zoomToStudy6"><a href="javascript:void(0);">&nbsp;&nbsp; Burlington County</a></li>
+                        <li id="zoomToStudy7"><a href="javascript:void(0);">&nbsp;&nbsp; Camden County</a></li>
+                        <li id="zoomToStudy8"><a href="javascript:void(0);">&nbsp;&nbsp; Gloucester County</a></li>
+                        <li id="zoomToStudy9"><a href="javascript:void(0);">&nbsp;&nbsp; Mercer County</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+      
+    <div class="row" id="container">
+        <div id="info-bar">
+            <b>Information</b><em> (click trail)</em>
+        </div>
+        <div class="col-sm-8 col-md-10 col-lg-10" id="map">
+    	    <div id='title'></div>	
+            <div id="loading" style="display: block;">
+                <div class="loading-indicator">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-info" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-4 col-md-2 col-lg-2" id="sidebar" style="padding: 10px; overflow: auto;">
+    		<div class="panel panel-primary">
+    			<div class="panel-heading" >
+    			   <span class="small text-muted" style="color:white"><strong>Data Layers</strong></span>
+                </div>	
+				<div id="overlay-layers" class="panel-collapse collapse in">
+	                <div class="panel-body" style="padding: 0px 15px;">  									  	
+	                    <h3 style="color:#0091a7;">The Circuit</h3>
+                        <div id="majorRoads" style="float: left">
+                            <b>Trail Status</b><br>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input id="Existing" type="checkbox"  onClick="toggleLayer(data4,'Existing')" checked>
+                                    <img src='img/excellent.png' width='40' height='8'> &nbsp;Existing
+                                </label>
+                            </div>   	
+                            <div class="checkbox">
+                                <label>
+                                    <input id="InProgress" type="checkbox"  onClick="toggleLayer(data5,'InProgress')" checked>
+                                    <img src='img/fair.png' width='40' height='8'> &nbsp;In Progress
+                                </label>
+                            </div>   	
+                            <div class="checkbox">
+                                <label>
+                                    <input id="Planned" type="checkbox"  onClick="toggleLayer(data6,'Planned')" checked>
+                                    <img src='img/fair.png' width='40' height='8'> &nbsp;Planned
+                                </label>
+                            </div>                      
+                        </div>
+    
+	            </div><!-- #overlay-layers .panel-collapse collapse in -->
+			</div><!-- .panel panel-primary -->
+                          
+        </div><!-- #Sidebar (Entire Sidebar) -->
+    </div><!-- #Container --> 
+    
+    <div class="modal fade" id="legendModal">
+        <div class="modal-dialog" style="width:900px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" data-dismiss="modal" type="button" style="color:white;">×</button>
+                    <h4 class="modal-title">Legend</h4>
+                </div>
+                <div class="modal-body" style="padding-top:0px;">
+                    <h3 style="color:#0078ae;">Bikeability Scores</h3>
+							<h4 style="margin-top:20px">Major Roads</h4>
+							 
+							<div class="media">
+								<a class="pull-left" href="#">
+									<img class="media-object" src="img/excellent.png"style="height:13px;width:63px; margin-top:2px">
+								</a>
+								<div class="media-body">
+									<h5 style="margin-bottom: 0px;margin-top:2px;"><b>Excellent -- </b>These road segments are generally comfortable to bike along (BLOS grades A and B)</h5>
+								</div>
+							</div>
+							
+							<div class="media">
+								<a class="pull-left" href="#">
+									<img class="media-object" src="img/fair.png"style="height:13px;width:63px; margin-top:12px">
+								</a>
+								<div class="media-body">
+                                    <h5 style="margin-bottom: 0px"><b>Fair -- </b>These road segments may present some issues, depending on your experience level (BLOS grades C and D)</h5>  
+									
+								</div>
+							</div>
+                            <hr>
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="img/gb_legend.png"style="margin-top:2px">
+                                </a>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <div class="modal fade" id="aboutDownload">
+        <div class="modal-dialog" style="width:620px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" data-dismiss="modal" type="button" style="color:white;">×</button>
+                    <h4 class="modal-title">The Circuit</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        In December 2014, DVRPC and the William Penn Foundation announced a renewed commitment to investment in the Circuit, Greater Philadelphia's Regional Trail Network. Building the Circuit, DVRPC's Regional Trails Program will benefit from a new $7 million grant from the William Penn Foundation. These funds will be used for targeted investment in the planning, design, and construction of multi-use trails in Greater Philadelphia.
+                    </p>
+                    <hr 75%=""></hr>
+                    <li class="download-left">
+                        <a class="downloadShape" href="Data/Shapefile.zip"><i class="glyphicon glyphicon-download-alt" style="margin-bottom:10px"></i>&nbsp;Shapefile <small style="opacity:0.6"> [5 MB zip] </small></a>
+                    </li>
+                    <li class="download-left">
+                        <a class="downloadShape" href="Data/GeoJSON.zip"><i class="glyphicon glyphicon-download-alt" style="margin-bottom:10px"></i>&nbsp;GeoJSON <small style="opacity:0.6"> [6 MB zip] </small></a>
+                    </li>
+                    <li class="download-left">
+                        <a class="downloadShape" href="Data/Excel.zip"><i class="glyphicon glyphicon-download-alt" style="margin-bottom:10px"></i>&nbsp;CSV<small style="opacity:0.6"> [1.2 MB zip] </small></a>
+                    </li>
+                    <hr 75%=""></hr>
+                </div>
+            </div>
+        </div>  
+    </div>
+      
+    <div class="modal fade" id="aboutModal">
+        <div class="modal-dialog"style="width:620px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" data-dismiss="modal" type="button" style="color:white;">×</button>
+                     <h4 class="modal-title">The Circuit</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="clearfix">
+                    <ul id="aboutTabs" class="nav nav-tabs">
+                        <li class="active"><a href="#about" data-toggle="tab"><i class="icon-road"></i>&nbsp;About</a></li>
+						<li><a href="#contact" data-toggle="tab"><i class="icon-envelope"></i>&nbsp;Contact</a></li> 						 
+						<li><a href="#disclaimer" data-toggle="tab"><i class="icon-exclamation-sign"></i>&nbsp;Disclaimer</a></li>
+                    </ul>
+                    <div id="aboutTabsContent" class="tab-content" style="padding-top: 10px;">
+                        <div class="tab-pane fade active in" id="about">
+                            <img style="margin:0px 0px 0px 15px;float:right;" src="img/about_logo.png"/>
+                            <p>
+                                In December 2014, DVRPC and the William Penn Foundation announced a renewed commitment to investment in the Circuit, Greater Philadelphia's Regional Trail Network. Building the Circuit, DVRPC's Regional Trails Program will benefit from a new $7 million grant from the William Penn Foundation. These funds will be used for targeted investment in the planning, design, and construction of multi-use trails in Greater Philadelphia.
+                            </p>
+                        </div>
+                       <!--  <img  style="margin:5px 10px 10px 0px;float:right;" src="img/phone.jpeg"/>
+                        <p> 
+                        CyclePhilly is a smartphone app for recording your bicycle trips. Data from the app can be used by regional transportation planners in the Philadelphia area to make Philly a better place to ride.
+                        CyclePhilly was developed by <a href="https://codeforphilly.org/projects/Bike_Route_Tracker" target="_new"> Code for Philly </a>, an open group of citizens working to harness the power of technology to modernize citizenship in Philadelphia.
+                        <br><br>CyclePhilly users are helping planners in the City of Philadelphia and Delaware Valley build better bike routes.<br><br>
+                        <a href="http://www.cyclephilly.org/" target="_new">Visit the CyclePhilly website to learn more</a>
+                        <img  style="margin:5px 10px 10px 0px;" src="img/logo120.png"/>
+                        </p>     -->
+						<div class="tab-pane fade" id="contact">
+							<p>
+								<strong>Christopher Linn, AICP</strong>
+								<br/>
+									Manager 
+								<br/>
+									Office of Environmental Planning
+								<br/>
+									Phone: 215-238-2873
+								<br/>
+								<a class="one" href="mailto:clinn@dvrpc.org">clinn@dvrpc.org </a> 
+							</p>					
+						</div>
+                        <div class="tab-pane fade" id="disclaimer">
+                            <p style="color:#666666">
+                                This web page is a public resource of general information. The Delaware Valley Regional Planning Commission (DVRPC) makes no warranty, representation, or guarantee as to the content, sequence, accuracy, timeliness, or completeness of any of the spatial data or database information provided herein. DVRPC and partner state, local, and other agencies shall assume no liability for errors, omissions, or inaccuracies in the information provided regardless of how caused; or any decision made or action taken or not taken by any person relying on any information or data furnished within.
+                            </p>	
+                        </div>
+                        
+					</div><!-- /#aboutTabsContent .tab-content -->
+                  </div><!-- /.clearfix -->
+                </div><!-- /.modal-body -->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> 
+	<script type="text/javascript" src="js/keydragzoom.js"></script>   
+    <script type="text/javascript" src="js/main.js"></script>
+
+    
+  </body>
+</html>
