@@ -5,6 +5,11 @@
   
 	var region = new google.maps.LatLng(39.950143, -75.170669);
  	    
+       $(document).ready(function() {
+          //OPEN ABOUT DIALOG
+            $('#aboutModal').modal();
+          });
+              
     function toggleLayer(dataLayer,id){
         if ($('#'+id).is(':checked')){
             dataLayer.setMap(map);
