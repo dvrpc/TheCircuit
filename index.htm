@@ -51,20 +51,7 @@
                 <li>
                     <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#aboutModal').modal('show'); return false;" ><i class="glyphicon glyphicon-info-sign" style="color: white"></i>&nbsp;&nbsp;About</a>
                 </li>
-                
-                <li>
-                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#legendModal').modal('show'); return false;"><i class="icon-picture" style="color:white;"></i>&nbsp;&nbsp;Legend</a>
-                </li>
-                
-                <li class="dropdown">    
-                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-wrench" style="color:white"></i>&nbsp;&nbsp;Tools and Data <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-				        <li id="zoomToRegion"><a href="javascript:void(0);"><i class="icon-fullscreen"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
-                        <li class="divider"></li>
-                            <li><a href="#" onclick="$('#aboutDownload').modal('show'); return false;"><i class="glyphicon glyphicon-download-alt"></i>&nbsp;&nbsp;Download Data</a>
-                            </li>
-                    </ul>
-                </li>
+                <li id="zoomToRegion"><a href="javascript:void(0);"><i class="icon-fullscreen"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>   
                 <li><a id="dropdown" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe" style="color:white"></i>&nbsp;&nbsp;Zoom to<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li id="zoomToStudy1"><a href="javascript:void(0);">&nbsp;&nbsp; Bucks County</a></li>
@@ -134,70 +121,47 @@
     </div><!-- #Container --> 
     
     <div class="modal fade" id="legendModal">
-        <div class="modal-dialog" style="width:900px">
+        <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" aria-hidden="true" data-dismiss="modal" type="button" style="color:white;">×</button>
                     <h4 class="modal-title">Legend</h4>
                 </div>
                 <div class="modal-body" style="padding-top:0px;">
-                    <h3 style="color:#0078ae;">Bikeability Scores</h3>
-							<h4 style="margin-top:20px">Major Roads</h4>
-							 
-							<div class="media">
+                    <h3 style="color:#8dc63f;">The Circuit Trails</h3>
+							 <div class="media">
 								<a class="pull-left" href="#">
-									<img class="media-object" src="img/excellent.png"style="height:13px;width:63px; margin-top:2px">
+									<img class="media-object" src="img/existing.png"style="height:13px;width:63px; margin-top:2px">
 								</a>
 								<div class="media-body">
-									<h5 style="margin-bottom: 0px;margin-top:2px;"><b>Excellent -- </b>These road segments are generally comfortable to bike along (BLOS grades A and B)</h5>
+									<h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These trails are already built so get out there are ride them!</h5>
 								</div>
 							</div>
-							
 							<div class="media">
 								<a class="pull-left" href="#">
-									<img class="media-object" src="img/fair.png"style="height:13px;width:63px; margin-top:12px">
+									<img class="media-object" src="img/inprogress.png"style="height:13px;width:63px; margin-top:12px">
 								</a>
 								<div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>Fair -- </b>These road segments may present some issues, depending on your experience level (BLOS grades C and D)</h5>  
-									
+                                    <h5 style="margin-bottom: 0px"><b>In Progress -- </b>Currently being built now.</h5>  
 								</div>
 							</div>
-                            <hr>
                             <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="img/planned.png"style="height:13px;width:63px; margin-top:12px">
+                                </a>
+                                <div class="media-body">
+                                    <h5 style="margin-bottom: 0px"><b>Planned-- </b>Find out more about how you can help get these trail built.</h5>  
+                                </div>
+                            </div>
+                         <!-- <hr> 
+                         <div class="media">
                                 <a class="pull-left" href="#">
                                     <img class="media-object" src="img/gb_legend.png"style="margin-top:2px">
                                 </a>
-                            </div>
+                            </div> -->
                 </div>
             </div>
         </div>
-    </div>
-      
-    <div class="modal fade" id="aboutDownload">
-        <div class="modal-dialog" style="width:620px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" aria-hidden="true" data-dismiss="modal" type="button" style="color:white;">×</button>
-                    <h4 class="modal-title">The Circuit</h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        In December 2014, DVRPC and the William Penn Foundation announced a renewed commitment to investment in the Circuit, Greater Philadelphia's Regional Trail Network. Building the Circuit, DVRPC's Regional Trails Program will benefit from a new $7 million grant from the William Penn Foundation. These funds will be used for targeted investment in the planning, design, and construction of multi-use trails in Greater Philadelphia.
-                    </p>
-                    <hr 75%=""></hr>
-                    <li class="download-left">
-                        <a class="downloadShape" href="Data/Shapefile.zip"><i class="glyphicon glyphicon-download-alt" style="margin-bottom:10px"></i>&nbsp;Shapefile <small style="opacity:0.6"> [5 MB zip] </small></a>
-                    </li>
-                    <li class="download-left">
-                        <a class="downloadShape" href="Data/GeoJSON.zip"><i class="glyphicon glyphicon-download-alt" style="margin-bottom:10px"></i>&nbsp;GeoJSON <small style="opacity:0.6"> [6 MB zip] </small></a>
-                    </li>
-                    <li class="download-left">
-                        <a class="downloadShape" href="Data/Excel.zip"><i class="glyphicon glyphicon-download-alt" style="margin-bottom:10px"></i>&nbsp;CSV<small style="opacity:0.6"> [1.2 MB zip] </small></a>
-                    </li>
-                    <hr 75%=""></hr>
-                </div>
-            </div>
-        </div>  
     </div>
       
     <div class="modal fade" id="aboutModal">
@@ -205,30 +169,47 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" aria-hidden="true" data-dismiss="modal" type="button" style="color:white;">×</button>
-                     <h4 class="modal-title">The Circuit</h4>
+                     <h4 class="modal-title">The Circuit Trails</h4>
                 </div>
                 <div class="modal-body">
                     <div class="clearfix">
                     <ul id="aboutTabs" class="nav nav-tabs">
-                        <li class="active"><a href="#about" data-toggle="tab"><i class="icon-road"></i>&nbsp;About</a></li>
+                        <li class="active"><a href="#about" data-toggle="tab"><i class="icon-info-sign"></i>&nbsp;About</a></li>
 						<li><a href="#contact" data-toggle="tab"><i class="icon-envelope"></i>&nbsp;Contact</a></li> 						 
 						<li><a href="#disclaimer" data-toggle="tab"><i class="icon-exclamation-sign"></i>&nbsp;Disclaimer</a></li>
                     </ul>
                     <div id="aboutTabsContent" class="tab-content" style="padding-top: 10px;">
                         <div class="tab-pane fade active in" id="about">
-                            <img style="margin:0px 0px 0px 15px;float:right;" src="img/about_logo.png"/>
+                            <img style="margin:0px 15px 0px 5px;float:left;" src="img/logo_stacked.png"/>
                             <p>
                                 In December 2014, DVRPC and the William Penn Foundation announced a renewed commitment to investment in the Circuit, Greater Philadelphia's Regional Trail Network. Building the Circuit, DVRPC's Regional Trails Program will benefit from a new $7 million grant from the William Penn Foundation. These funds will be used for targeted investment in the planning, design, and construction of multi-use trails in Greater Philadelphia.
                             </p>
+                            <hr>
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="img/existing.png"style="height:13px;width:63px; margin-top:2px">
+                                </a>
+                                <div class="media-body">
+                                    <h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These trails are already built so get out there are ride them!</h5>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="img/inprogress.png"style="height:13px;width:63px; margin-top:12px">
+                                </a>
+                                <div class="media-body">
+                                    <h5 style="margin-bottom: 0px"><b>In Progress -- </b>Currently being built now.</h5>  
+                                </div>
+                            </div>
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="img/planned.png"style="height:13px;width:63px; margin-top:12px">
+                                </a>
+                                <div class="media-body">
+                                    <h5 style="margin-bottom: 0px"><b>Planned-- </b>Find out more about how you can help get these trail built.</h5>  
+                                </div>
+                            </div>
                         </div>
-                       <!--  <img  style="margin:5px 10px 10px 0px;float:right;" src="img/phone.jpeg"/>
-                        <p> 
-                        CyclePhilly is a smartphone app for recording your bicycle trips. Data from the app can be used by regional transportation planners in the Philadelphia area to make Philly a better place to ride.
-                        CyclePhilly was developed by <a href="https://codeforphilly.org/projects/Bike_Route_Tracker" target="_new"> Code for Philly </a>, an open group of citizens working to harness the power of technology to modernize citizenship in Philadelphia.
-                        <br><br>CyclePhilly users are helping planners in the City of Philadelphia and Delaware Valley build better bike routes.<br><br>
-                        <a href="http://www.cyclephilly.org/" target="_new">Visit the CyclePhilly website to learn more</a>
-                        <img  style="margin:5px 10px 10px 0px;" src="img/logo120.png"/>
-                        </p>     -->
 						<div class="tab-pane fade" id="contact">
 							<p>
 								<strong>Christopher Linn, AICP</strong>

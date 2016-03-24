@@ -89,10 +89,11 @@
         });		
 		
         data4.addListener('click', function(e) {
-            var content = '<h4 style="color:white;background-color:#8dc63f;padding:8px">'
+            var content = //'<h4 style="color:white;background-color:#8dc63f;padding:8px">'
                       //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
-                        + e.feature.getProperty('NAME')+'</h4>'
+                     //   + e.feature.getProperty('NAME')+'</h4>'
                       //   +'<b>Name: </b>'+e.feature.getProperty('NAME')
+                         '<b>Name: </b>'+e.feature.getProperty('NAME')+'<br>'
                 		 +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
 
 	        $('#info-bar').html(content);
@@ -121,10 +122,10 @@
         });		
 		
         data5.addListener('click', function(e) {
-                var content = '<h4 style="color:white;background-color:#fdae61;padding:8px">'
+                var content = //'<h4 style="color:white;background-color:#fdae61;padding:8px">'
                       //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
-                        + e.feature.getProperty('NAME')+'</h4>'
-                      //   +'<b>Name: </b>'+e.feature.getProperty('NAME')
+                      //  + e.feature.getProperty('NAME')+'</h4>'
+                           '<b>Name: </b>'+e.feature.getProperty('NAME')+'<br>'
                          +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
 
             $('#info-bar').html(content);
@@ -154,10 +155,9 @@
         });     
         
         data6.addListener('click', function(e) {
-               var content = '<h4 style="color:white;background-color:#005789;padding:8px">'
-                      //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
-                        + e.feature.getProperty('NAME')+'</h4>'
-                      //   +'<b>Name: </b>'+e.feature.getProperty('NAME')
+               var content = //'<h4 style="color:white;background-color:#005789;padding:8px">'
+                       // + e.feature.getProperty('NAME')+'</h4>'
+                         '<b>Name: </b>'+e.feature.getProperty('NAME')+'<br>'
                          +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
 
             $('#info-bar').html(content);
