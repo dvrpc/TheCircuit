@@ -69,7 +69,8 @@
     	data4.setMap(map);
     	data4.setStyle(function (feature) {
 		    return {   
-                strokeColor: '#8dc740',
+                strokeColor: '#8dc63f',
+               // strokeColor: '#8dc740',
 			    strokeWeight: 3,
         		fill: true,
         		clickable: true
@@ -88,9 +89,11 @@
         });		
 		
         data4.addListener('click', function(e) {
-            var content = '<b>Bikeability Score: </b>'+e.feature.getProperty('CIRCUIT')
-                		 +'<br><b>Initial BLOS Grade/Score: </b>'+e.feature.getProperty('BLOS')+ '&nbsp;&#47;'+e.feature.getProperty('SCORE')
-                         +'<br><i style="font-size:80%;">(see “About”)</i>';
+            var content = '<h4 style="color:white;background-color:#8dc63f;padding:8px">'
+                      //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
+                        + e.feature.getProperty('NAME')+'</h4>'
+                      //   +'<b>Name: </b>'+e.feature.getProperty('NAME')
+                		 +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
 
 	        $('#info-bar').html(content);
         });		
@@ -118,9 +121,11 @@
         });		
 		
         data5.addListener('click', function(e) {
-        var content = '<b>Bikeability Score: </b>'+e.feature.getProperty('CIRCUIT')
-                     +'<br><b>Initial BLOS Grade/Score: </b>'+e.feature.getProperty('BLOS')+ '&nbsp;&#47;'+e.feature.getProperty('SCORE')
-                     +'<br><i style="font-size:80%;">(see “About”)</i>';
+                var content = '<h4 style="color:white;background-color:#fdae61;padding:8px">'
+                      //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
+                        + e.feature.getProperty('NAME')+'</h4>'
+                      //   +'<b>Name: </b>'+e.feature.getProperty('NAME')
+                         +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
 
             $('#info-bar').html(content);
         });
@@ -131,7 +136,7 @@
         data6.setMap(map);
         data6.setStyle(function (feature) {
             return {   
-                strokeColor: '#0084a8',
+                strokeColor: '#005789',
                 strokeWeight: 3,
                 clickable: true
             }
@@ -149,9 +154,11 @@
         });     
         
         data6.addListener('click', function(e) {
-        var content = '<b>Bikeability Score: </b>'+e.feature.getProperty('CIRCUIT')
-                     +'<br><b>Initial BLOS Grade/Score: </b>'+e.feature.getProperty('BLOS')+ '&nbsp;&#47;'+e.feature.getProperty('SCORE')
-                     +'<br><i style="font-size:80%;">(see “About”)</i>';
+               var content = '<h4 style="color:white;background-color:#005789;padding:8px">'
+                      //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
+                        + e.feature.getProperty('NAME')+'</h4>'
+                      //   +'<b>Name: </b>'+e.feature.getProperty('NAME')
+                         +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
 
             $('#info-bar').html(content);
         });

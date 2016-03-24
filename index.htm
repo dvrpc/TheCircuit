@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>The Circuit</title>
+    <title>DVRPC - The Circuit Trails</title>
 
     <!-- Core CSS -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -42,8 +42,8 @@
             </button>
 			<span>	
                 <a  href="http://www.dvrpc.org" target="_new"><img class="pull-left" style="margin:10px 0px 0px 15px" src="img/dvrpc_logo_small.png"/></a> 
-              <!--   <img class="pull-left" style="margin:5px 0px 0px 10px" src="img/circuit_banner.png"/> -->
-                <a class="navbar-brand" href="#">The Circuit - Greater Philadelphia's Regional Trail Network</a> 
+                 <img class="pull-left" style="margin:0px 0px 0px 10px" src="img/banner_long.png"/>
+              <!--   <a class="navbar-brand" href="#">The Circuit - Greater Philadelphia's Regional Trail Network</a> -->
 			</span> 
         </div>
         <div class="navbar-collapse collapse">
@@ -57,7 +57,7 @@
                 </li>
                 
                 <li class="dropdown">    
-                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-wrench" style="color: white"></i>&nbsp;&nbsp;Tools and Data <b class="caret"></b></a>
+                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-wrench" style="color:white"></i>&nbsp;&nbsp;Tools and Data <b class="caret"></b></a>
                     <ul class="dropdown-menu">
 				        <li id="zoomToRegion"><a href="javascript:void(0);"><i class="icon-fullscreen"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
                         <li class="divider"></li>
@@ -104,26 +104,25 @@
                 </div>	
 				<div id="overlay-layers" class="panel-collapse collapse in">
 	                <div class="panel-body" style="padding: 0px 15px;">  									  	
-	                    <h3 style="color:#0091a7;">The Circuit</h3>
+	                  <!--   <h3 style="color:#8dc63f;">The Circuit</h3> -->
+                       <h3 style="color:#008192;">Trail Status</h3>
                         <div id="majorRoads" style="float: left">
-                            <b>Trail Status</b><br>
-
                             <div class="checkbox">
                                 <label>
                                     <input id="Existing" type="checkbox"  onClick="toggleLayer(data4,'Existing')" checked>
-                                    <img src='img/excellent.png' width='40' height='8'> &nbsp;Existing
+                                    <img src='img/existing.png' width='40' height='8'> &nbsp;Existing
                                 </label>
                             </div>   	
                             <div class="checkbox">
                                 <label>
                                     <input id="InProgress" type="checkbox"  onClick="toggleLayer(data5,'InProgress')" checked>
-                                    <img src='img/fair.png' width='40' height='8'> &nbsp;In Progress
+                                    <img src='img/inprogress.png' width='40' height='8'> &nbsp;In Progress
                                 </label>
                             </div>   	
                             <div class="checkbox">
                                 <label>
                                     <input id="Planned" type="checkbox"  onClick="toggleLayer(data6,'Planned')" checked>
-                                    <img src='img/fair.png' width='40' height='8'> &nbsp;Planned
+                                    <img src='img/planned.png' width='40' height='8'> &nbsp;Planned
                                 </label>
                             </div>                      
                         </div>
