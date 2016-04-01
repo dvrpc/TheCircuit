@@ -43,6 +43,7 @@
   // Create a simple map.
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 9,
+    minZoom: 9, 
     center: {lat: 39.950143, lng:-75.170669 },
     mapTypeId: MY_MAPTYPE_ID,  
     mapTypeControlOptions: {
@@ -65,6 +66,9 @@
   
         var jayzMapType = new google.maps.StyledMapType(stylez, styledMapOptions);
         map.mapTypes.set(MY_MAPTYPE_ID,jayzMapType);
+
+
+       
  
 	 //   var bikeLayer = new google.maps.BicyclingLayer();
      //   bikeLayer.setMap(map);
@@ -168,17 +172,31 @@
             $('#info-bar').html(content);
         });
 
+
+        cntyData = new google.maps.Data();
+        cntyData.loadGeoJson('data/cnty.js');
+        cntyData.setMap(map);
+        cntyData.setStyle(function (feature){
+        	return {
+        		zIndex:10,
+        		clickable: false,
+        		fillOpacity: 0.0,
+        		strokeColor: 'grey',
+        		strokeWeight: 3
+        	}
+        });
+
         //County Bndy
-         $.getJSON('data/cnty.js', function(d) {
-            var data = new google.maps.Data({map: map, style:{
-                clickable: false,
-                zIndex:10,
-                 fillOpacity: .0,   
-                 strokeColor: 'grey',
-                 strokeWeight: 3
-                     }});
-            data.addGeoJson(d);
-         });
+         // $.getJSON('data/cnty.js', function(d) {
+         //    var data = new google.maps.Data({map: map, style:{
+         //        clickable: false,
+         //        zIndex:10,
+         //         fillOpacity: .0,   
+         //         strokeColor: 'grey',
+         //         strokeWeight: 3
+         //             }});
+         //    data.addGeoJson(d);
+         // });
 
         
         $("#zoomToRegion").click(function(){
@@ -236,6 +254,30 @@
             data5.revertStyle();
             data6.revertStyle();
         });
+
+
+
+        // Adjust LatLngBounds if larger area needed
+    	// bounds of the desired area
+		var allowedBounds = new google.maps.LatLngBounds(
+		    new google.maps.LatLng(38.689713, -78.275104), // Southwest
+    		new google.maps.LatLng(41.463231, -72.336994)  // Northeast
+		);
+		var lastValidCenter = map.getCenter();
+
+		google.maps.event.addListener(map, 'center_changed', function() {
+		    if (allowedBounds.contains(map.getCenter())) {
+		        // still within valid bounds, so save the last valid position
+		        lastValidCenter = map.getCenter();
+		        return; 
+		    }
+
+		    // not valid anymore => return to last valid position
+		    map.panTo(lastValidCenter);
+		});
+
+ 
+
     }
         google.maps.event.addDomListener(window, 'load', initialize);
 
