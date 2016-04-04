@@ -1,0 +1,18 @@
+.icon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    background: transparent url('http://www.dvrpc.org/webmaps/img/dataportal/index.png') no-repeat;
+    height: 18px;
+    width: 18px;
+    content: ' ';
+}
+.icon-fbD {
+    background-position: -53px 0;
+}
+.icon-instagramD {
+    background-position: -106px 0;
+}
+.icon-twitterD {
+    background-position: -142px 0;
+}

@@ -14,6 +14,7 @@
     <link href="css/typeahead.js-bootstrap.css" rel="stylesheet" type="text/css"> <!--https://github.com/jharding/typeahead.js-bootstrap.css-->
     <link href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/icons.css" rel="stylesheet" type="text/css">
     
     <!--[if lte IE 8]>
         <link href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" rel="stylesheet" type="text/css">
@@ -119,51 +120,8 @@
                           
         </div><!-- #Sidebar (Entire Sidebar) -->
     </div><!-- #Container --> 
-    
-    <div class="modal fade" id="legendModal">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" aria-hidden="true" data-dismiss="modal" type="button" style="color:white;">×</button>
-                    <h4 class="modal-title">Legend</h4>
-                </div>
-                <div class="modal-body" style="padding-top:0px;">
-                    <h3 style="color:#8dc63f;">The Circuit Trails</h3>
-							 <div class="media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="img/existing.png"style="height:13px;width:63px; margin-top:2px">
-								</a>
-								<div class="media-body">
-									<h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These trails are already built so get out there are ride them!</h5>
-								</div>
-							</div>
-							<div class="media">
-								<a class="pull-left" href="#">
-									<img class="media-object" src="img/inprogress.png"style="height:13px;width:63px; margin-top:12px">
-								</a>
-								<div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>In Progress -- </b>Currently being built now.</h5>  
-								</div>
-							</div>
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="img/planned.png"style="height:13px;width:63px; margin-top:12px">
-                                </a>
-                                <div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>Planned-- </b>Find out more about how you can help get these trail built.</h5>  
-                                </div>
-                            </div>
-                         <!-- <hr> 
-                         <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="img/gb_legend.png"style="margin-top:2px">
-                                </a>
-                            </div> -->
-                </div>
-            </div>
-        </div>
-    </div>
-      
+
+     <!-- About Modal --> 
     <div class="modal fade" id="aboutModal">
         <div class="modal-dialog"style="width:620px">
             <div class="modal-content">
@@ -180,9 +138,9 @@
                     </ul>
                     <div id="aboutTabsContent" class="tab-content" style="padding-top: 10px;">
                         <div class="tab-pane fade active in" id="about">
-                            <img style="margin:0px 15px 0px 5px;float:left;" src="img/logo_stacked.png"/>
+                            <img style="margin:0px 15px 0px 5px;float:left;padding-bottom:20px;" src="img/logo_stacked.png"/>
                             <p>
-                                In December 2014, DVRPC and the William Penn Foundation announced a renewed commitment to investment in the Circuit, Greater Philadelphia's Regional Trail Network. Building the Circuit, DVRPC's Regional Trails Program will benefit from a new $7 million grant from the William Penn Foundation. These funds will be used for targeted investment in the planning, design, and construction of multi-use trails in Greater Philadelphia.
+                                The Circuit is Greater Philadelphia’s multi–use trail network connecting people to jobs, communities, parks, and waterways. Governments, non-profits, and foundations have collaborated to complete over 300 miles of the envisioned 750-mile regional network. More miles are added to the network each year. Learn more at <a class="one" href="http://www.ConnecttheCircuit.org" target="_blank">ConnecttheCircuit.org</a>  and connect with The Circuit Trails on <a class="one" href="https://www.facebook.com/TheCircuitTrails" target="_blank">Facebook </a><span class="icon icon-fbD"></span>, <a class="one" href="https://twitter.com/circuittrails" target="_blank">Twitter </a><span class="icon icon-twitterD"></span>  and <a class="one" href="https://www.instagram.com/thecircuittrails/" target="_blank">Instagram </a><span class="icon icon-instagramD"></span> to find out what is happening <span style="color:#8dc63f;font-weight: bold;font-size: 140%">#onthecircuit</span>.
                             </p>
                             <hr>
                             <div class="media">
@@ -190,7 +148,7 @@
                                     <img class="media-object" src="img/existing.png"style="height:13px;width:63px; margin-top:2px">
                                 </a>
                                 <div class="media-body">
-                                    <h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These trails are already built so get out there are ride them!</h5>
+                                    <h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These trails are open for use so get out there and explore them!</h5>
                                 </div>
                             </div>
                             <div class="media">
@@ -198,7 +156,7 @@
                                     <img class="media-object" src="img/inprogress.png"style="height:13px;width:63px; margin-top:12px">
                                 </a>
                                 <div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>In Progress -- </b>Currently being built now.</h5>  
+                                    <h5 style="margin-bottom: 0px"><b>In Progress -- </b>These trails are currently being designed or built.</h5>  
                                 </div>
                             </div>
                             <div class="media">
@@ -206,7 +164,7 @@
                                     <img class="media-object" src="img/planned.png"style="height:13px;width:63px; margin-top:12px">
                                 </a>
                                 <div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>Planned-- </b>Find out more about how you can help get these trail built.</h5>  
+                                    <h5 style="margin-bottom: 0px"><b>Planned -- </b>DVRPC, local governments and non-profit organizations are working to plan and secure rights-of-way for these trails.</h5>  
                                 </div>
                             </div>
                         </div>

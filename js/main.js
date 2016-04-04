@@ -1,14 +1,14 @@
-    var map;
+  var map;
 	var MY_MAPTYPE_ID = 'Base Map';
-    var streetViewService = new google.maps.StreetViewService();
+  var streetViewService = new google.maps.StreetViewService();
 	var geoJsonObject;
   
-	var region = new google.maps.LatLng(39.950143, -75.170669);
+	var region = new google.maps.LatLng(40.08, -75.170669);
  	    
-       $(document).ready(function() {
-          //OPEN ABOUT DIALOG
-            $('#aboutModal').modal();
-          });
+   $(document).ready(function() {
+      //OPEN ABOUT DIALOG
+        $('#aboutModal').modal();
+      });
               
     function toggleLayer(dataLayer,id){
         if ($('#'+id).is(':checked')){
@@ -20,30 +20,32 @@
     };  
         
 	function initialize() {
-  //  $('#aboutModal').modal();
-/* var stylez = [{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#f5f5f5"}]},
-{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},
-{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#f5f5f5"}]},
-{"featureType":"poi","elementType":"all","stylers":[{"color":"#cdd7cd"}]},
-{"featureType":"poi","elementType":"labels.text","stylers":[{"visibility":"simplified"}]},
-{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},
-{"featureType":"road.highway","elementType":"all","stylers":[{"color":"#e0e0e0"}]},
-{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"on"}]},
-{"featureType":"road.arterial","elementType":"all","stylers":[{"color":"#e0e0e0"}]},
-{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},
-{"featureType":"road.local","elementType":"all","stylers":[{"visibility":"on"},{"color":"#e0e0e0"}]},
-{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},
-{"featureType":"transit.station","elementType":"geometry.fill","stylers":[{"color":"#e0e0e0"}]},
-{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#a5b4c8"}]},
-{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]}];
-*/
-// var stylez = [{"stylers":[{"hue":"#ff1a00"},{"invert_lightness":true},{"saturation":-100},{"lightness":33},{"gamma":0.5}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2D333C"}]}];
-  var stylez = [{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"administrative.neighborhood","elementType":"geometry","stylers":[{"visibility":"on"}]},{"featureType":"administrative.neighborhood","elementType":"geometry.fill","stylers":[{"lightness":"-47"},{"visibility":"on"},{"color":"#37b2bd"}]},{"featureType":"administrative.neighborhood","elementType":"geometry.stroke","stylers":[{"color":"#37b2bd"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"}]},{"featureType":"poi","elementType":"all","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"},{"hue":"#ff0000"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#000000"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","elementType":"all","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#75cfd7"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]}];
+  var stylez = [{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},
+  {"featureType":"administrative.neighborhood","elementType":"all","stylers":[{"visibility":"on"}]},
+  {"featureType":"administrative.neighborhood","elementType":"geometry","stylers":[{"visibility":"on"}]},
+  {"featureType":"administrative.neighborhood","elementType":"geometry.fill","stylers":[{"lightness":"-47"},{"visibility":"on"},{"color":"#37b2bd"}]},
+  {"featureType":"administrative.neighborhood","elementType":"geometry.stroke","stylers":[{"color":"#37b2bd"},{"visibility":"on"}]},
+  {"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},
+  {"featureType":"landscape","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"}]},
+  {"featureType":"poi","elementType":"all","stylers":[{"saturation":-75},{"lightness":30},{"visibility":"on"}]},
+  {"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#000000"}]},
+  {"featureType":"road","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},
+  {"featureType":"road.highway","elementType":"all","stylers":[{"saturation":-140},{"visibility":"simplified"}]},
+  {"featureType":"road.arterial","elementType":"all","stylers":[{"saturation":-140},{"lightness":30},{"visibility":"on"}]},
+  {"featureType":"road.local","elementType":"all","stylers":[{"saturation":-140},{"lightness":40},{"visibility":"on"}]},
+  {"featureType":"road.local","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"}]},
+  {"featureType":"transit","elementType":"all","stylers":[{"saturation":-140},{"visibility":"simplified"}]},
+  {"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},
+  {"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#75cfd7"}]},
+  {"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},
+  {"featureType":"water","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]}
+  ];
 
   // Create a simple map.
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 9,
-    center: {lat: 39.950143, lng:-75.170669 },
+    minZoom: 9, 
+    center: {lat: 40.08, lng:-75.170669 },
     mapTypeId: MY_MAPTYPE_ID,  
     mapTypeControlOptions: {
     mapTypeIds: [MY_MAPTYPE_ID,google.maps.MapTypeId.SATELLITE,google.maps.MapTypeId.HYBRID],
@@ -69,11 +71,25 @@
 	 //   var bikeLayer = new google.maps.BicyclingLayer();
      //   bikeLayer.setMap(map);
 
+    //County Bndy
+         $.getJSON('data/cnty.js', function(d) {
+            var data = new google.maps.Data({map: map, style:{
+                clickable: false,
+                zIndex:10,
+                fillOpacity: .0,   
+                strokeColor: '#a6a6a6',
+                strokeOpacity: .75,
+                strokeWeight: 3
+                     }});
+            data.addGeoJson(d);
+         });
+
 	    data4 = new google.maps.Data();
 	    data4.loadGeoJson('data/existing.js');
     	data4.setMap(map);
     	data4.setStyle(function (feature) {
 		    return {   
+                zIndex: 200,
                 strokeColor: '#8dc63f',
                // strokeColor: '#8dc740',
 			    strokeWeight: 3,
@@ -104,16 +120,17 @@
 	        $('#info-bar').html(content);
         });		
 	
-        data5 = new google.maps.Data();
+      data5 = new google.maps.Data();
     	data5.loadGeoJson('data/inprogress.js');
     	data5.setMap(map);
     	data5.setStyle(function (feature) {
     		return {   
+                zIndex: 202,
                 strokeColor: '#fdae61',
     			strokeWeight: 3,
         		clickable: true
 	        }
-		});
+	   	});
 	
         data5.addListener('click', function(e) {
     	    data6.revertStyle();
@@ -142,12 +159,15 @@
         data6.setMap(map);
         data6.setStyle(function (feature) {
             return {   
-                strokeColor: '#005789',
+                zIndex: 201,
+             //   strokeColor: '#005789',
+                strokeColor: '#008192',
                 strokeWeight: 3,
                 clickable: true
-            }
+            //    strokeWeight: map.getZoom()>14?5:3
+            };
         });
-    
+
         data6.addListener('click', function(e) {
             data6.revertStyle();
             data5.revertStyle();
@@ -168,21 +188,32 @@
             $('#info-bar').html(content);
         });
 
-        //County Bndy
-         $.getJSON('data/cnty.js', function(d) {
-            var data = new google.maps.Data({map: map, style:{
-                clickable: false,
-                zIndex:10,
-                 fillOpacity: .0,   
-                 strokeColor: 'grey',
-                 strokeWeight: 3
-                     }});
-            data.addGeoJson(d);
-         });
+/* google.maps.event.addListener(map, 'zoom_changed', function()
+  { 
+    var zoomLevel = map.getZoom();
+    
+    if(zoomLevel <=12)
+      data6.overrideStyle(strokeWeight:9);
+
+    // === If Zoom Level > 8 use mapStyleZoomedOut 
+    else
+      data6.overrideStyle(strokeWeight:3);
+
+  }); 
+    google.maps.event.addListener(map,'zoom_changed',function(){
+     data6.setStyle(function (feature) {
+            return {   
+                zIndex: 201,
+                strokeColor: '#008192',
+                clickable: true,
+                strokeWeight: map.getZoom()>14?5:3
+            };
+        });
+  }); */
 
         
         $("#zoomToRegion").click(function(){
-            map.setCenter(new google.maps.LatLng(39.950143, -75.170669));
+            map.setCenter(new google.maps.LatLng(40.08, -75.170669));
             map.setZoom(9);
         });
 
@@ -235,6 +266,24 @@
             data4.revertStyle();
             data5.revertStyle();
             data6.revertStyle();
+        });
+        // Adjust LatLngBounds if larger area needed
+        // bounds of the desired area
+        var allowedBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(38.689713, -78.275104), // Southwest
+            new google.maps.LatLng(41.463231, -72.336994)  // Northeast
+        );
+        var lastValidCenter = map.getCenter();
+
+        google.maps.event.addListener(map, 'center_changed', function() {
+            if (allowedBounds.contains(map.getCenter())) {
+                // still within valid bounds, so save the last valid position
+                lastValidCenter = map.getCenter();
+                return; 
+            }
+
+            // not valid anymore => return to last valid position
+            map.panTo(lastValidCenter);
         });
     }
         google.maps.event.addDomListener(window, 'load', initialize);
