@@ -89,36 +89,43 @@
     	data4.setMap(map);
     	data4.setStyle(function (feature) {
 		    return {   
-                zIndex: 200,
-                strokeColor: '#8dc63f',
-               // strokeColor: '#8dc740',
-			    strokeWeight: 3,
-        		fill: true,
-        		clickable: true
+               zIndex: 200,
+               strokeColor: '#8dc63f',
+			         strokeWeight: 3,
+        		   fill: true,
+        		   clickable: true
 	        }
-		});
-	
-        data4.addListener('click', function(e) {
-    	    data4.revertStyle();
-            data5.revertStyle();
-            data6.revertStyle();
-            data4.overrideStyle(e.feature,{ 
-                strokeOpacity: .7,   
-                strokeColor: '#ff0000' ,
-                strokeWeight: 5
-		    });
-        });		
-		
-        data4.addListener('click', function(e) {
-            var content = //'<h4 style="color:white;background-color:#8dc63f;padding:8px">'
-                      //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
-                     //   + e.feature.getProperty('NAME')+'</h4>'
-                      //   +'<b>Name: </b>'+e.feature.getProperty('NAME')
-                         '<b>Name: </b>'+e.feature.getProperty('NAME')+'<br>'
-                		 +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
+		  });
 
-	        $('#info-bar').html(content);
-        });		
+      data4b = new google.maps.Data();
+      data4b.loadGeoJson('data/existing.js');
+      data4b.setMap(map);
+      data4b.setStyle(function (feature) {
+        return {   
+                zIndex: 300,
+                strokeOpacity: .0, 
+                strokeWeight: 8,
+                clickable: true
+          }
+      });
+  
+      data4b.addListener('click', function(e) {
+          data4b.revertStyle();
+          data5b.revertStyle();
+          data6b.revertStyle();
+          data4b.overrideStyle(e.feature,{ 
+              strokeOpacity: .7,   
+              strokeColor: '#ff0000' ,
+              strokeWeight: 5
+      });
+      });   
+    
+      data4b.addListener('click', function(e) {
+          var content = '<b>Name: </b>'+e.feature.getProperty('NAME')+'<br>'
+                   +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
+
+        $('#info-bar').html(content);
+      }); 
 	
       data5 = new google.maps.Data();
     	data5.loadGeoJson('data/inprogress.js');
@@ -127,23 +134,36 @@
     		return {   
                 zIndex: 202,
                 strokeColor: '#fdae61',
-    			strokeWeight: 3,
-        		clickable: true
+    			      strokeWeight: 3,
+        		   clickable: true
 	        }
 	   	});
-	
-        data5.addListener('click', function(e) {
-    	    data6.revertStyle();
-            data5.revertStyle();
-            data4.revertStyle();
-            data5.overrideStyle(e.feature,{ 
+      
+      data5b = new google.maps.Data();
+      data5b.loadGeoJson('data/inprogress.js');
+      data5b.setMap(map);
+      data5b.setStyle(function (feature) {
+        return {   
+                zIndex: 302,
+                strokeColor: '#fdae61',
+                strokeOpacity: .0, 
+                strokeWeight: 8,
+                clickable: true
+          }
+      });
+  
+        data5b.addListener('click', function(e) {
+            data6b.revertStyle();
+            data5b.revertStyle();
+            data4b.revertStyle();
+            data5b.overrideStyle(e.feature,{ 
                 strokeOpacity: .7,   
                 strokeColor: '#ff0000' ,
                 strokeWeight: 5
-    		});
-        });		
-		
-        data5.addListener('click', function(e) {
+        });
+        });   
+    
+        data5b.addListener('click', function(e) {
                 var content = //'<h4 style="color:white;background-color:#fdae61;padding:8px">'
                       //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
                       //  + e.feature.getProperty('NAME')+'</h4>'
@@ -153,14 +173,12 @@
             $('#info-bar').html(content);
         });
 
-
         data6 = new google.maps.Data();
         data6.loadGeoJson('data/planned.js');
         data6.setMap(map);
         data6.setStyle(function (feature) {
             return {   
                 zIndex: 201,
-             //   strokeColor: '#005789',
                 strokeColor: '#008192',
                 strokeWeight: 3,
                 clickable: true
@@ -168,18 +186,33 @@
             };
         });
 
-        data6.addListener('click', function(e) {
-            data6.revertStyle();
-            data5.revertStyle();
-            data4.revertStyle();
-            data6.overrideStyle(e.feature,{ 
+        data6b = new google.maps.Data();
+        data6b.loadGeoJson('data/planned.js');
+        data6b.setMap(map);
+        data6b.setStyle(function (feature) {
+            return {   
+                zIndex: 301,
+             //   strokeColor: '#005789',
+                strokeColor: '#008192',
+                strokeOpacity:.0,
+                strokeWeight: 8,
+                clickable: true
+            //    strokeWeight: map.getZoom()>14?5:3
+            };
+        });
+
+        data6b.addListener('click', function(e) {
+            data6b.revertStyle();
+            data5b.revertStyle();
+            data4b.revertStyle();
+            data6b.overrideStyle(e.feature,{ 
                 strokeOpacity: .7,   
                 strokeColor: '#ff0000' ,
                 strokeWeight: 5
             });
         });     
         
-        data6.addListener('click', function(e) {
+        data6b.addListener('click', function(e) {
                var content = //'<h4 style="color:white;background-color:#005789;padding:8px">'
                        // + e.feature.getProperty('NAME')+'</h4>'
                          '<b>Name: </b>'+e.feature.getProperty('NAME')+'<br>'
@@ -187,7 +220,6 @@
 
             $('#info-bar').html(content);
         });
-
 /* google.maps.event.addListener(map, 'zoom_changed', function()
   { 
     var zoomLevel = map.getZoom();
@@ -263,9 +295,9 @@
         });
 
         google.maps.event.addListener(map, 'click', function() {
-            data4.revertStyle();
-            data5.revertStyle();
-            data6.revertStyle();
+            data4b.revertStyle();
+            data5b.revertStyle();
+            data6b.revertStyle();
         });
         // Adjust LatLngBounds if larger area needed
         // bounds of the desired area
