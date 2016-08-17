@@ -12,10 +12,20 @@
               
     function toggleLayer(dataLayer,id){
         if ($('#'+id).is(':checked')){
-            dataLayer.setMap(map);
+            data4.revertStyle();
+            data4b.revertStyle();
         }
         else {
-            dataLayer.setMap(null);
+            data4.forEach(function (feature) {
+              if (feature.getProperty('CIRCUIT') === dataLayer) {
+                data4.overrideStyle(feature, {visible: false});
+              }
+            })
+            data4b.forEach(function (feature) {
+              if (feature.getProperty('CIRCUIT') === dataLayer) {
+                data4b.overrideStyle(feature, {visible: false});
+              }
+            })
         }
     };  
         
@@ -84,13 +94,19 @@
             data.addGeoJson(d);
          });
 
+      var dataColors = {
+        'Existing': '#8dc63f',
+        'Planned': '#008192',
+        'In Progress': '#fdae61'
+    };
+
 	    data4 = new google.maps.Data();
-	    data4.loadGeoJson('data/existing.js');
+	    data4.loadGeoJson('http://dvrpc.dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson');
     	data4.setMap(map);
     	data4.setStyle(function (feature) {
-		    return {   
+        return {   
                zIndex: 200,
-               strokeColor: '#8dc63f',
+               strokeColor: dataColors[feature.getProperty('CIRCUIT')],
 			         strokeWeight: 3,
         		   fill: true,
         		   clickable: true
@@ -98,7 +114,7 @@
 		  });
 
       data4b = new google.maps.Data();
-      data4b.loadGeoJson('data/existing.js');
+      data4b.loadGeoJson('http://dvrpc.dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson');
       data4b.setMap(map);
       data4b.setStyle(function (feature) {
         return {   
@@ -111,8 +127,6 @@
   
       data4b.addListener('click', function(e) {
           data4b.revertStyle();
-          data5b.revertStyle();
-          data6b.revertStyle();
           data4b.overrideStyle(e.feature,{ 
               strokeOpacity: .7,   
               strokeColor: '#ff0000' ,
@@ -127,99 +141,7 @@
         $('#info-bar').html(content);
       }); 
 	
-      data5 = new google.maps.Data();
-    	data5.loadGeoJson('data/inprogress.js');
-    	data5.setMap(map);
-    	data5.setStyle(function (feature) {
-    		return {   
-                zIndex: 202,
-                strokeColor: '#fdae61',
-    			      strokeWeight: 3,
-        		   clickable: true
-	        }
-	   	});
       
-      data5b = new google.maps.Data();
-      data5b.loadGeoJson('data/inprogress.js');
-      data5b.setMap(map);
-      data5b.setStyle(function (feature) {
-        return {   
-                zIndex: 302,
-                strokeColor: '#fdae61',
-                strokeOpacity: .0, 
-                strokeWeight: 8,
-                clickable: true
-          }
-      });
-  
-        data5b.addListener('click', function(e) {
-            data6b.revertStyle();
-            data5b.revertStyle();
-            data4b.revertStyle();
-            data5b.overrideStyle(e.feature,{ 
-                strokeOpacity: .7,   
-                strokeColor: '#ff0000' ,
-                strokeWeight: 5
-        });
-        });   
-    
-        data5b.addListener('click', function(e) {
-                var content = //'<h4 style="color:white;background-color:#fdae61;padding:8px">'
-                      //  +'<img style="margin:0px 0px 0px 0px" src="img/bikeped.png"/>'
-                      //  + e.feature.getProperty('NAME')+'</h4>'
-                           '<b>Name: </b>'+e.feature.getProperty('NAME')+'<br>'
-                         +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
-
-            $('#info-bar').html(content);
-        });
-
-        data6 = new google.maps.Data();
-        data6.loadGeoJson('data/planned.js');
-        data6.setMap(map);
-        data6.setStyle(function (feature) {
-            return {   
-                zIndex: 201,
-                strokeColor: '#008192',
-                strokeWeight: 3,
-                clickable: true
-            //    strokeWeight: map.getZoom()>14?5:3
-            };
-        });
-
-        data6b = new google.maps.Data();
-        data6b.loadGeoJson('data/planned.js');
-        data6b.setMap(map);
-        data6b.setStyle(function (feature) {
-            return {   
-                zIndex: 301,
-             //   strokeColor: '#005789',
-                strokeColor: '#008192',
-                strokeOpacity:.0,
-                strokeWeight: 8,
-                clickable: true
-            //    strokeWeight: map.getZoom()>14?5:3
-            };
-        });
-
-        data6b.addListener('click', function(e) {
-            data6b.revertStyle();
-            data5b.revertStyle();
-            data4b.revertStyle();
-            data6b.overrideStyle(e.feature,{ 
-                strokeOpacity: .7,   
-                strokeColor: '#ff0000' ,
-                strokeWeight: 5
-            });
-        });     
-        
-        data6b.addListener('click', function(e) {
-               var content = //'<h4 style="color:white;background-color:#005789;padding:8px">'
-                       // + e.feature.getProperty('NAME')+'</h4>'
-                         '<b>Name: </b>'+e.feature.getProperty('NAME')+'<br>'
-                         +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT');
-
-            $('#info-bar').html(content);
-        });
 /* google.maps.event.addListener(map, 'zoom_changed', function()
   { 
     var zoomLevel = map.getZoom();
@@ -296,8 +218,6 @@
 
         google.maps.event.addListener(map, 'click', function() {
             data4b.revertStyle();
-            data5b.revertStyle();
-            data6b.revertStyle();
         });
         // Adjust LatLngBounds if larger area needed
         // bounds of the desired area
