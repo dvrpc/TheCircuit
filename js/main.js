@@ -148,7 +148,7 @@
 
         $('#info-bar').html(content);
       }); 
-  
+
       
 /* google.maps.event.addListener(map, 'zoom_changed', function()
   { 
