@@ -1,10 +1,10 @@
   var map;
-	var MY_MAPTYPE_ID = 'Base Map';
+  var MY_MAPTYPE_ID = 'Base Map';
   var streetViewService = new google.maps.StreetViewService();
-	var geoJsonObject;
+  var geoJsonObject;
   
-	var region = new google.maps.LatLng(40.08, -75.170669);
- 	    
+  var region = new google.maps.LatLng(40.08, -75.170669);
+      
    $(document).ready(function() {
       //OPEN ABOUT DIALOG
         $('#aboutModal').modal();
@@ -12,24 +12,30 @@
               
     function toggleLayer(dataLayer,id){
         if ($('#'+id).is(':checked')){
-            data4.revertStyle();
-            data4b.revertStyle();
+          //  data4.revertStyle();
+             data4.forEach(function (feature) {
+              if (feature.getProperty('CIRCUIT') === dataLayer) {
+              data4.overrideStyle(feature, { strokeOpacity: 1,});
+              }
+            })
+           data4b.revertStyle();
         }
         else {
             data4.forEach(function (feature) {
               if (feature.getProperty('CIRCUIT') === dataLayer) {
-                data4.overrideStyle(feature, {visible: false});
+                data4.overrideStyle(feature, { strokeOpacity: .0,});
               }
             })
             data4b.forEach(function (feature) {
               if (feature.getProperty('CIRCUIT') === dataLayer) {
-                data4b.overrideStyle(feature, {visible: false});
+                data4b.overrideStyle(feature, {strokeOpacity: .0, clickable: false});
               }
             })
         }
+        
     };  
         
-	function initialize() {
+  function initialize() {
   var stylez = [{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},
   {"featureType":"administrative.neighborhood","elementType":"all","stylers":[{"visibility":"on"}]},
   {"featureType":"administrative.neighborhood","elementType":"geometry","stylers":[{"visibility":"on"}]},
@@ -78,7 +84,7 @@
         var jayzMapType = new google.maps.StyledMapType(stylez, styledMapOptions);
         map.mapTypes.set(MY_MAPTYPE_ID,jayzMapType);
  
-	 //   var bikeLayer = new google.maps.BicyclingLayer();
+   //   var bikeLayer = new google.maps.BicyclingLayer();
      //   bikeLayer.setMap(map);
 
     //County Bndy
@@ -94,27 +100,29 @@
             data.addGeoJson(d);
          });
 
-      var dataColors = {
-        'Existing': '#8dc63f',
-        'Planned': '#008192',
-        'In Progress': '#fdae61'
+    var dataColors = {
+      'Existing': '#8dc63f',
+      'Planned': '#008192',
+      'In Progress': '#fdae61'
     };
+    
+    function styles(feature) {
+    return {
+        strokeWeight: 3,
+        strokeOpacity: .8,
+        strokeColor: dataColors[feature.getProperty('CIRCUIT')],
+    }
+  }
 
-	    data4 = new google.maps.Data();
-	    data4.loadGeoJson('http://dvrpc.dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson');
-    	data4.setMap(map);
-    	data4.setStyle(function (feature) {
-        return {   
-               zIndex: 200,
-               strokeColor: dataColors[feature.getProperty('CIRCUIT')],
-			         strokeWeight: 3,
-        		   fill: true,
-        		   clickable: true
-	        }
-		  });
+    data4 = new google.maps.Data();
+    $.getJSON('https://dvrpc-dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson', function(d) {
+    data4.addGeoJson(d, {idPropertyName: 'OBJECTID'});
+    data4.setStyle(styles);
+    data4.setMap(map);
+    });
 
       data4b = new google.maps.Data();
-      data4b.loadGeoJson('http://dvrpc.dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson');
+      data4b.loadGeoJson('https://dvrpc-dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson');
       data4b.setMap(map);
       data4b.setStyle(function (feature) {
         return {   
@@ -140,7 +148,7 @@
 
         $('#info-bar').html(content);
       }); 
-	
+  
       
 /* google.maps.event.addListener(map, 'zoom_changed', function()
   { 
