@@ -89,7 +89,7 @@
                             <div class="checkbox">
                                 <label>
                                     <input id="Existing" type="checkbox"  onClick="toggleLayer('Existing','Existing')" checked>
-                                    <img src='img/existing.png' width='40' height='8'> &nbsp;Existing
+                                    <img src='img/existing2.png' width='40' height='8'> &nbsp;Existing
                                 </label>
                             </div>   	
                             <div class="checkbox">
@@ -97,13 +97,20 @@
                                     <input id="InProgress" type="checkbox"  onClick="toggleLayer('In Progress','InProgress')" checked>
                                     <img src='img/inprogress.png' width='40' height='8'> &nbsp;In Progress
                                 </label>
-                            </div>   	
+                            </div>  
+                            <div class="checkbox">
+                                <label>
+                                    <input id="Pipeline" type="checkbox"  onClick="toggleLayer('Pipeline','Pipeline')" checked>
+                                    <img src='img/pipeline.png' width='40' height='8'> &nbsp;Pipeline
+                                </label>
+                            </div> 	
                             <div class="checkbox">
                                 <label>
                                     <input id="Planned" type="checkbox"  onClick="toggleLayer('Planned','Planned')" checked>
-                                    <img src='img/planned.png' width='40' height='8'> &nbsp;Planned
+                                    <img src='img/planned2.png' width='40' height='8'> &nbsp;Planned
                                 </label>
-                            </div>                      
+                            </div>   
+                                             
                         </div>
     
 	            </div><!-- #overlay-layers .panel-collapse collapse in -->
@@ -136,7 +143,7 @@
                             <hr>
                             <div class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object" src="img/existing.png" style="height:13px;width:63px; margin-top:2px">
+                                    <img class="media-object" src="img/existing2.png" style="height:13px;width:63px; margin-top:2px">
                                 </a>
                                 <div class="media-body">
                                     <h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These trails are open for use so get out there and explore them!</h5>
@@ -150,12 +157,20 @@
                                     <h5 style="margin-bottom: 0px"><b>In Progress -- </b>These trails are currently being designed or built.</h5>  
                                 </div>
                             </div>
-                            <div class="media">
+                              <div class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object" src="img/planned.png" style="height:13px;width:63px; margin-top:12px">
+                                    <img class="media-object" src="img/pipeline.png" style="height:13px;width:63px; margin-top:12px">
                                 </a>
                                 <div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>Planned -- </b>DVRPC, local governments, and non-profit organizations are working to plan and secure rights-of-way for these trails.</h5>  
+                                    <h5 style="margin-bottom: 0px"><b>Pipeline -- </b>DVRPC, local governments, and non-profit organizations are actively working to move these trails forward by conducting studies, acquiring rights-of-way, engaging local communities, and laying the groundwork to obtain funding for future design and construction.</h5>  
+                                </div>
+                            </div>
+                               <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="img/planned2.png" style="height:13px;width:63px; margin-top:12px">
+                                </a>
+                                <div class="media-body">
+                                    <h5 style="margin-bottom: 0px"><b>Planned -- </b>These trails are documented in local, county or regional plans.  They represent excellent opportunities for regional-scale, multi-use trails.  Studies or plans may have been prepared for these trails, but a sponsor is not actively working to move them forward.</h5>  
                                 </div>
                             </div>
                         </div>
@@ -186,9 +201,10 @@
     </div><!-- /.modal -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvK54P-Pb3skEYDLFVoRnSTLtRyG5GJ6U"></script> -->
-	<script src="https://maps.googleapis.com/maps/api/js?"></script> 
-    <script type="text/javascript" src="js/keydragzoom.js"></script>   
+ <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvK54P-Pb3skEYDLFVoRnSTLtRyG5GJ6U"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="js/keydragzoom.js"></script>  
+     <script type="text/javascript" src="js/numeral.min.js"></script>   
     <script type="text/javascript" src="js/main.js"></script>
 
     <script>var _gaq=[['_setAccount','UA-9825778-1'],['_trackPageview']];(function(d){var g=d.createElement('script'),s=d.scripts[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document))</script> 
