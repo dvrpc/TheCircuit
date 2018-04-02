@@ -117,14 +117,14 @@
   }
 
     data4 = new google.maps.Data();
-    $.getJSON('https://dvrpc-dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson', function(d) {
+    $.getJSON('data/circuit.js', function(d) {
     data4.addGeoJson(d, {idPropertyName: 'OBJECTID_1'});
     data4.setStyle(styles);
     data4.setMap(map);
     });
 
       data4b = new google.maps.Data();
-      data4b.loadGeoJson('https://dvrpc-dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson');
+      data4b.loadGeoJson('data/circuit.js');
       data4b.setMap(map);
       data4b.setStyle(function (feature) {
         return {   
