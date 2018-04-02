@@ -153,32 +153,7 @@
 
         $('#info-bar').html(content);
       }); 
-
-      
-/* google.maps.event.addListener(map, 'zoom_changed', function()
-  { 
-    var zoomLevel = map.getZoom();
     
-    if(zoomLevel <=12)
-      data6.overrideStyle(strokeWeight:9);
-
-    // === If Zoom Level > 8 use mapStyleZoomedOut 
-    else
-      data6.overrideStyle(strokeWeight:3);
-
-  }); 
-    google.maps.event.addListener(map,'zoom_changed',function(){
-     data6.setStyle(function (feature) {
-            return {   
-                zIndex: 201,
-                strokeColor: '#008192',
-                clickable: true,
-                strokeWeight: map.getZoom()>14?5:3
-            };
-        });
-  }); */
-
-        
         $("#zoomToRegion").click(function(){
             map.setCenter(new google.maps.LatLng(40.08, -75.170669));
             map.setZoom(9);
