@@ -88,7 +88,7 @@
      //   bikeLayer.setMap(map);
 
     //County Bndy
-         $.getJSON('data/cnty.js', function(d) {
+         $.getJSON('https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Boundaries/FeatureServer/1/query?where=DVRPC_REG%3D%27Yes%27&outFields=STATE%20+CO_NAME&geometryPrecision=5&outSR=4326&f=pgeojson', function(d) {
             var data = new google.maps.Data({map: map, style:{
                 clickable: false,
                 zIndex:10,
@@ -117,34 +117,22 @@
   }
 
     data4 = new google.maps.Data();
-    $.getJSON('https://dvrpc-dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson', function(d) {
-    data4.addGeoJson(d, {idPropertyName: 'OBJECTID_1'});
+    $.getJSON('https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Circuit_Trails/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID%2C+MAIN_TRAIL%2C+NAME%2C+LENGTH%2C+CIRCUIT&geometryPrecision=5&outSR=4326&f=pgeojson', function(d) {
+    data4.addGeoJson(d, {idPropertyName: 'OBJECTID'});
     data4.setStyle(styles);
     data4.setMap(map);
     });
-
-      data4b = new google.maps.Data();
-      data4b.loadGeoJson('https://dvrpc-dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson');
-      data4b.setMap(map);
-      data4b.setStyle(function (feature) {
-        return {   
-                zIndex: 300,
-                strokeOpacity: .0, 
-                strokeWeight: 8,
-                clickable: true
-          }
-      });
   
-      data4b.addListener('click', function(e) {
-          data4b.revertStyle();
-          data4b.overrideStyle(e.feature,{ 
+      data4.addListener('click', function(e) {
+          data4.revertStyle();
+          data4.overrideStyle(e.feature,{ 
               strokeOpacity: .7,   
               strokeColor: '#ff0000' ,
               strokeWeight: 5
       });
       });   
     
-      data4b.addListener('click', function(e) {
+      data4.addListener('click', function(e) {
           var content = '<b>Primary Trail Name: </b>'+e.feature.getProperty('MAIN_TRAIL')+'<br>'
                    +'<b>Description: </b>'+e.feature.getProperty('NAME')+'<br>'
                       +'<b>Length (mi): </b>'+ numeral(e.feature.getProperty('LENGTH')).format('0.00')+'<br>'
@@ -205,7 +193,7 @@
         });
 
         google.maps.event.addListener(map, 'click', function() {
-            data4b.revertStyle();
+            data4.revertStyle();
         });
         // Adjust LatLngBounds if larger area needed
         // bounds of the desired area
