@@ -14,7 +14,7 @@
         if ($('#'+id).is(':checked')){
           //  data4.revertStyle();
              data4.forEach(function (feature) {
-              if (feature.getProperty('CIRCUIT') === dataLayer) {
+              if (feature.getProperty('circuit') === dataLayer) {
               data4.overrideStyle(feature, { strokeOpacity: 1,});
               }
             })
@@ -22,12 +22,12 @@
         }
         else {
             data4.forEach(function (feature) {
-              if (feature.getProperty('CIRCUIT') === dataLayer) {
+              if (feature.getProperty('circuit') === dataLayer) {
                 data4.overrideStyle(feature, { strokeOpacity: .0,});
               }
             })
             data4b.forEach(function (feature) {
-              if (feature.getProperty('CIRCUIT') === dataLayer) {
+              if (feature.getProperty('circuit') === dataLayer) {
                 data4b.overrideStyle(feature, {strokeOpacity: .0, clickable: false});
               }
             })
@@ -113,13 +113,13 @@
     return {
         strokeWeight: 3,
         strokeOpacity: .8,
-        strokeColor: dataColors[feature.getProperty('CIRCUIT')],
+        strokeColor: dataColors[feature.getProperty('circuit')],
     }
   }
 
     data4 = new google.maps.Data();
     $.getJSON('https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Circuit_Trails/FeatureServer/0/query?where=1%3D1&outFields=*&geometryPrecision=5&outSR=4326&f=pgeojson', function(d) {
-    data4.addGeoJson(d, {idPropertyName: 'OBJECTID'});
+    data4.addGeoJson(d, {idPropertyName: 'objectid'});
     data4.setStyle(styles);
     data4.setMap(map);
     });
@@ -135,24 +135,24 @@
     
       data4.addListener('click', function(e) {
           
-        if (e.feature.getProperty('SURFACE') == null ){ var SURFACE = ''}
-        else { var SURFACE = '<b>Surface: </b>'+e.feature.getProperty('SURFACE')+'<br>'  ;}
+        if (e.feature.getProperty('surface') == null ){ var SURFACE = ''}
+        else { var SURFACE = '<b>Surface: </b>'+e.feature.getProperty('surface')+'<br>'  ;}
 
-        if (e.feature.getProperty('FACILITY') == null ){ var FACILITY = ''}
-        else { var FACILITY= '<b>Facility Type: </b>'+e.feature.getProperty('FACILITY')+'<br>'  ;}
+        if (e.feature.getProperty('facility') == null ){ var FACILITY = ''}
+        else { var FACILITY= '<b>Facility Type: </b>'+e.feature.getProperty('facility')+'<br>'  ;}
 
-        if (e.feature.getProperty('CIRCUIT') == 'Existing' ){ var TypeColor = '#7EB238'}
-        else if (e.feature.getProperty('CIRCUIT') == 'In Progress' ){ var TypeColor = '#fdae61'}
-        else if (e.feature.getProperty('CIRCUIT') == 'Pipeline' ){ var TypeColor = '#AF46A4'}
+        if (e.feature.getProperty('circuit') == 'Existing' ){ var TypeColor = '#7EB238'}
+        else if (e.feature.getProperty('circuit') == 'In Progress' ){ var TypeColor = '#fdae61'}
+        else if (e.feature.getProperty('circuit') == 'Pipeline' ){ var TypeColor = '#AF46A4'}
         else { var TypeColor= '#329aa7'  ;}
 
-        var content = '<div id="infoheader-text" style="background-color: '+TypeColor+'; color: #fff !important; border-color: #d0e1e1; padding: 0px ; border-radius: 5px;margin-top:2px"><p style="text-align:center;margin-top:5px;font-weight: bold;font-size:larger;">' + e.feature.getProperty('MAIN_TRAIL') + '</p></div>'     
+        var content = '<div id="infoheader-text" style="background-color: '+TypeColor+'; color: #fff !important; border-color: #d0e1e1; padding: 0px ; border-radius: 5px;margin-top:2px"><p style="text-align:center;margin-top:5px;font-weight: bold;font-size:larger;">' + e.feature.getProperty('main_trail') + '</p></div>'     
     
                 //  +'<b>Primary Trail Name: </b>'+e.feature.getProperty('MAIN_TRAIL')+'<br>'
-                   +'<b>Description: </b>'+e.feature.getProperty('NAME')+'<br>'
-                   +'<b>Length (mi): </b>'+ numeral(e.feature.getProperty('LENGTH')).format('0.00')+'<br>'
+                   +'<b>Description: </b>'+e.feature.getProperty('name')+'<br>'
+                   +'<b>Length (mi): </b>'+ numeral(e.feature.getProperty('length')).format('0.00')+'<br>'
                       //  numeral(props.TTCost).format('($0,0.0)')
-                   +'<b>Trail Status: </b>'+e.feature.getProperty('CIRCUIT')+'<br>'
+                   +'<b>Trail Status: </b>'+e.feature.getProperty('circuit')+'<br>'
                    + SURFACE
                    + FACILITY ;
 
