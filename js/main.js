@@ -118,7 +118,7 @@
   }
 
     data4 = new google.maps.Data();
-    $.getJSON('https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Circuit_Trails/FeatureServer/0/query?where=1%3D1&outFields=*&geometryPrecision=5&outSR=4326&f=pgeojson', function(d) {
+    $.getJSON('https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/CircuitTrails/FeatureServer/0/query?where=1%3D1&outFields=*&geometryPrecision=5&outSR=4326&f=pgeojson', function(d) {
     data4.addGeoJson(d, {idPropertyName: 'objectid'});
     data4.setStyle(styles);
     data4.setMap(map);
