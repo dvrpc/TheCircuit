@@ -89,7 +89,7 @@
      //   bikeLayer.setMap(map);
 
     //County Bndy
-         $.getJSON('https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Boundaries/FeatureServer/1/query?where=DVRPC_REG%3D%27Yes%27&outFields=STATE%20+CO_NAME&geometryPrecision=5&outSR=4326&f=pgeojson', function(d) {
+         $.getJSON('https://arcgis.dvrpc.org/portal/rest/services/Boundaries/CountyBoundaries/FeatureServer/0/query?where=DVRPC_REG%3D%27Yes%27&outFields=STATE%20+CO_NAME&geometryPrecision=5&outSR=4326&f=geojson', function(d) {
             var data = new google.maps.Data({map: map, style:{
                 clickable: false,
                 zIndex:10,
@@ -118,7 +118,7 @@
   }
 
     data4 = new google.maps.Data();
-    $.getJSON('https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/CircuitTrails/FeatureServer/0/query?where=1%3D1&outFields=*&geometryPrecision=5&outSR=4326&f=pgeojson', function(d) {
+    $.getJSON('https://arcgis.dvrpc.org/portal/rest/services/Transportation/CircuitTrails/FeatureServer/0/query?where=1%3D1&outFields=*&geometryPrecision=5&outSR=4326&f=geojson', function(d) {
     data4.addGeoJson(d, {idPropertyName: 'objectid'});
     data4.setStyle(styles);
     data4.setMap(map);
