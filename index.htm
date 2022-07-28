@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -10,20 +11,87 @@
 
     <!-- Core CSS -->
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/typeahead.js-bootstrap.css" rel="stylesheet" type="text/css"> <!--https://github.com/jharding/typeahead.js-bootstrap.css-->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+    <link href="css/typeahead.js-bootstrap.css" rel="stylesheet" type="text/css">
+    <!--https://github.com/jharding/typeahead.js-bootstrap.css-->
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/icons.css" rel="stylesheet" type="text/css">
-    
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
     <![endif]-->
-  
-  </head>
 
-  <body>
+</head>
+<style>
+    #info-box {
+        background-color: white;
+        border: 1px solid black;
+        bottom: 30px;
+        height: 20px;
+        padding: 10px;
+        position: absolute;
+        left: 30px;
+    }
+
+    /* 7/27/22 edits  */
+    @media (max-width: 768px) {
+        #banner-image {
+            width: 60%;
+            padding-top: 2%;
+        }
+
+        #mobileButton {
+            background: none;
+            color: #428bca;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            margin-top: -1px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        #mobileButton {
+            display: none;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1255px) {
+
+        .info-bar2,
+        .gmnoprint .gm-style-mtc {
+            top: 7%;
+        }
+    }
+</style>
+<!-- 7/27/22 edits  -->
+<script>
+    function collapseControls(event) {
+        var text = event.target.textContent
+        event.target.textContent = text === "collapse" ? "expand" : "collapse"
+        var controls = document.getElementById('majorRoads')
+        controls.style.display = controls.style.display === "none" ? "block" : "none"
+        var legend = document.getElementsByClassName('info-bar2')
+        legend[0].style.height = legend[0].style.height === "min-content" ? "auto" : "min-content"
+    }
+
+    addEventListener('resize', function (event) {
+        if (window.innerWidth > 768) {
+            var controls = document.getElementById('majorRoads')
+            controls.style.display = "block"
+            var legend = document.getElementsByClassName('info-bar2')
+            legend[0].style.height = "auto"
+            document.getElementById('mobileButton').textContent = "collapse"
+        }
+    })
+</script>
+
+<body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
@@ -32,19 +100,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-			<span>	
-                <a  href="//www.dvrpc.org" target="_new"><img class="pull-left" style="margin:10px 0px 0px 15px" src="img/dvrpc_logo_small.png"/></a> 
-                 <img class="pull-left" style="margin:0px 0px 0px 10px" src="img/banner_long.png"/>
-              <!--   <a class="navbar-brand" href="#">The Circuit - Greater Philadelphia's Regional Trail Network</a> -->
-			</span> 
+            <span>
+                <a href="//www.dvrpc.org" target="_new"><img class="pull-left" style="margin:10px 0px 0px 15px"
+                        src="img/dvrpc_logo_small.png" /></a>
+                <img class="pull-left" style="margin:0px 0px 0px 10px" src="img/banner_long.png" />
+                <!--   <a class="navbar-brand" href="#">The Circuit - Greater Philadelphia's Regional Trail Network</a> -->
+            </span>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right" id="navright">
                 <li>
-                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#aboutModal').modal('show'); return false;" ><i class="glyphicon glyphicon-info-sign" style="color: white"></i>&nbsp;&nbsp;About</a>
+                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="collapse"
+                        data-target=".navbar-collapse.in" onclick="$('#aboutModal').modal('show'); return false;"><i
+                            class="glyphicon glyphicon-info-sign" style="color: white"></i>&nbsp;&nbsp;About</a>
                 </li>
-                <li id="zoomToRegion"><a href="javascript:void(0);"><i class="icon-fullscreen"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>   
-                <li><a id="dropdown" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-globe" style="color:white"></i>&nbsp;&nbsp;Zoom to<b class="caret"></b></a>
+                <li id="zoomToRegion"><a href="javascript:void(0);"><i class="icon-fullscreen"></i>&nbsp;&nbsp;Zoom To
+                        Full Extent</a></li>
+                <li><a id="dropdown" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="glyphicon glyphicon-globe" style="color:white"></i>&nbsp;&nbsp;Zoom to<b
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li id="zoomToStudy1"><a href="javascript:void(0);">&nbsp;&nbsp; Bucks County</a></li>
                         <li id="zoomToStudy2"><a href="javascript:void(0);">&nbsp;&nbsp; Chester County</a></li>
@@ -58,15 +132,16 @@
                     </ul>
                 </li>
             </ul>
-        </div><!--/.navbar-collapse -->
+        </div>
+        <!--/.navbar-collapse -->
     </div>
-      
+
     <div class="row" id="container">
         <div id="info-bar">
             <b>Information</b><em> (click trail)</em>
         </div>
         <div class="col-sm-8 col-md-10 col-lg-10" id="map">
-    	    <div id='title'></div>	
+            <div id='title'></div>
             <div id="loading" style="display: block;">
                 <div class="loading-indicator">
                     <div class="progress progress-striped active">
@@ -75,144 +150,191 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-sm-4 col-md-2 col-lg-2" id="sidebar" style="padding: 10px; overflow: auto;">
-    		<div class="panel panel-primary">
-    			<div class="panel-heading" >
-    			   <span class="small text-muted" style="color:white"><strong>Data Layers</strong></span>
-                </div>	
-				<div id="overlay-layers" class="panel-collapse collapse in">
-	                <div class="panel-body" style="padding: 0px 15px;">  									  	
-	                  <!--   <h3 style="color:#8dc63f;">The Circuit</h3> -->
-                       <h3 style="color:#008192;">Trail Status</h3>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="small text-muted" style="color:white"><strong>Data Layers</strong></span>
+                </div>
+                <div id="overlay-layers" class="panel-collapse collapse in">
+                    <div class="panel-body" style="padding: 0px 15px;">
+                        <!--   <h3 style="color:#8dc63f;">The Circuit</h3> -->
+                        <h3 style="color:#008192;">Trail Status</h3>
                         <div id="majorRoads" style="float: left">
                             <div class="checkbox">
                                 <label>
-                                    <input id="Existing" type="checkbox"  onClick="toggleLayer('Existing','Existing')" checked>
+                                    <input id="Existing" type="checkbox" onClick="toggleLayer('Existing','Existing')"
+                                        checked>
                                     <img src='img/existing2.png' width='40' height='8'> &nbsp;Existing
                                 </label>
-                            </div>   	
+                            </div>
                             <div class="checkbox">
                                 <label>
-                                    <input id="InProgress" type="checkbox"  onClick="toggleLayer('In Progress','InProgress')" checked>
+                                    <input id="InProgress" type="checkbox"
+                                        onClick="toggleLayer('In Progress','InProgress')" checked>
                                     <img src='img/inprogress.png' width='40' height='8'> &nbsp;In Progress
                                 </label>
-                            </div>  
+                            </div>
                             <div class="checkbox">
                                 <label>
-                                    <input id="Pipeline" type="checkbox"  onClick="toggleLayer('Pipeline','Pipeline')" checked>
+                                    <input id="Pipeline" type="checkbox" onClick="toggleLayer('Pipeline','Pipeline')"
+                                        checked>
                                     <img src='img/pipeline.png' width='40' height='8'> &nbsp;Pipeline
                                 </label>
-                            </div> 	
+                            </div>
                             <div class="checkbox">
                                 <label>
-                                    <input id="Planned" type="checkbox"  onClick="toggleLayer('Planned','Planned')" checked>
+                                    <input id="Planned" type="checkbox" onClick="toggleLayer('Planned','Planned')"
+                                        checked>
                                     <img src='img/planned2.png' width='40' height='8'> &nbsp;Planned
                                 </label>
-                            </div>   
-                                             
+                            </div>
+
                         </div>
-    
-	            </div><!-- #overlay-layers .panel-collapse collapse in -->
-			</div><!-- .panel panel-primary -->
-                          
-        </div><!-- #Sidebar (Entire Sidebar) -->
-    </div><!-- #Container --> 
 
-     <!-- About Modal --> 
-    <div class="modal fade" id="aboutModal">
-        <div class="modal-dialog" style="width:620px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" aria-hidden="true" data-dismiss="modal" type="button" style="color:white;">×</button>
-                     <h4 class="modal-title">The Circuit Trails</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="clearfix">
-                    <ul id="aboutTabs" class="nav nav-tabs">
-                        <li class="active"><a href="#about" data-toggle="tab"><i class="icon-info-sign"></i>&nbsp;About</a></li>
-						<li><a href="#contact" data-toggle="tab"><i class="icon-envelope"></i>&nbsp;Contact</a></li> 						 
-						<li><a href="#disclaimer" data-toggle="tab"><i class="icon-exclamation-sign"></i>&nbsp;Disclaimer</a></li>
-                    </ul>
-                    <div id="aboutTabsContent" class="tab-content" style="padding-top: 10px;">
-                        <div class="tab-pane fade active in" id="about">
-                            <img style="margin:0px 15px 0px 5px;float:left;padding-bottom:20px;" src="img/logo_stacked.png"/>
-                            <p>
-                                The Circuit is Greater Philadelphia’s multi–use trail network connecting people to jobs, communities, parks, and waterways. Governments, non-profits, and foundations have collaborated to complete over 300 miles of the envisioned 750-mile regional network. More miles are added to the network each year. Learn more at <a class="one" href="http://www.CircuitTrails.org/" target="_blank">CircuitTrails.org</a>  and connect with The Circuit Trails on <a class="one" href="https://www.facebook.com/TheCircuitTrails" target="_blank">Facebook </a><span class="icon icon-fbD"></span>, <a class="one" href="https://twitter.com/circuittrails" target="_blank">Twitter </a><span class="icon icon-twitterD"></span>  and <a class="one" href="https://www.instagram.com/thecircuittrails/" target="_blank">Instagram </a><span class="icon icon-instagramD"></span> to find out what is happening <span style="color:#8dc63f;font-weight: bold;font-size: 140%">#onthecircuit</span>.
-                            </p>
-                            <hr>
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="img/existing2.png" style="height:13px;width:63px; margin-top:2px">
-                                </a>
-                                <div class="media-body">
-                                    <h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These trails are open for use so get out there and explore them!</h5>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="img/inprogress.png" style="height:13px;width:63px; margin-top:12px">
-                                </a>
-                                <div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>In Progress -- </b>These trails are currently being designed or built.</h5>  
-                                </div>
-                            </div>
-                              <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="img/pipeline.png" style="height:13px;width:63px; margin-top:12px">
-                                </a>
-                                <div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>Pipeline -- </b>DVRPC, local governments, and non-profit organizations are actively working to move these trails forward by conducting studies, acquiring rights-of-way, engaging local communities, and laying the groundwork to obtain funding for future design and construction.</h5>  
-                                </div>
-                            </div>
-                               <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="img/planned2.png" style="height:13px;width:63px; margin-top:12px">
-                                </a>
-                                <div class="media-body">
-                                    <h5 style="margin-bottom: 0px"><b>Planned -- </b>These trails are documented in local, county or regional plans.  They represent excellent opportunities for regional-scale, multi-use trails.  Studies or plans may have been prepared for these trails, but a sponsor is not actively working to move them forward.</h5>  
-                                </div>
-                            </div>
-                        </div>
-						<div class="tab-pane fade" id="contact">
-							<p>
-								<strong>Christopher Linn, AICP</strong>
-								<br/>
-									Manager 
-								<br/>
-									Office of Environmental Planning
-								<br/>
-									Phone: 215-238-2873
-								<br/>
-								<a class="one" href="mailto:clinn@dvrpc.org">clinn@dvrpc.org </a> 
-							</p>					
-						</div>
-                        <div class="tab-pane fade" id="disclaimer">
-                            <p style="color:#666666">
-                                This web page is a public resource of general information. The Delaware Valley Regional Planning Commission (DVRPC) makes no warranty, representation, or guarantee as to the content, sequence, accuracy, timeliness, or completeness of any of the spatial data or database information provided herein. DVRPC and partner state, local, and other agencies shall assume no liability for errors, omissions, or inaccuracies in the information provided regardless of how caused; or any decision made or action taken or not taken by any person relying on any information or data furnished within.
-                            </p>	
-                        </div>
-                        
-					</div><!-- /#aboutTabsContent .tab-content -->
-                  </div><!-- /.clearfix -->
-                </div><!-- /.modal-body -->
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script> -->
-    <script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+                    </div><!-- #overlay-layers .panel-collapse collapse in -->
+                </div><!-- .panel panel-primary -->
 
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvK54P-Pb3skEYDLFVoRnSTLtRyG5GJ6U"></script> 
-    <!--  <script src="https://maps.googleapis.com/maps/api/js"></script> -->
-    <script type="text/javascript" src="js/keydragzoom.js"></script>  
-    <script type="text/javascript" src="js/numeral.min.js"></script>   
-    <script type="text/javascript" src="js/main.js"></script>
+            </div><!-- #Sidebar (Entire Sidebar) -->
+        </div><!-- #Container -->
 
-    <script>var _gaq=[['_setAccount','UA-9825778-1'],['_trackPageview']];(function(d){var g=d.createElement('script'),s=d.scripts[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document))</script> 
+        <!-- About Modal -->
+        <div class="modal fade" id="aboutModal">
+            <div class="modal-dialog" style="width:620px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" aria-hidden="true" data-dismiss="modal" type="button"
+                            style="color:white;">×</button>
+                        <h4 class="modal-title">The Circuit Trails</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="clearfix">
+                            <ul id="aboutTabs" class="nav nav-tabs">
+                                <li class="active"><a href="#about" data-toggle="tab"><i
+                                            class="icon-info-sign"></i>&nbsp;About</a></li>
+                                <li><a href="#contact" data-toggle="tab"><i class="icon-envelope"></i>&nbsp;Contact</a>
+                                </li>
+                                <li><a href="#disclaimer" data-toggle="tab"><i
+                                            class="icon-exclamation-sign"></i>&nbsp;Disclaimer</a></li>
+                            </ul>
+                            <div id="aboutTabsContent" class="tab-content" style="padding-top: 10px;">
+                                <div class="tab-pane fade active in" id="about">
+                                    <img style="margin:0px 15px 0px 5px;float:left;padding-bottom:20px;"
+                                        src="img/logo_stacked.png" />
+                                    <p>
+                                        The Circuit is Greater Philadelphia’s multi–use trail network connecting people
+                                        to jobs, communities, parks, and waterways. Governments, non-profits, and
+                                        foundations have collaborated to complete over 300 miles of the envisioned
+                                        750-mile regional network. More miles are added to the network each year. Learn
+                                        more at <a class="one" href="http://www.CircuitTrails.org/"
+                                            target="_blank">CircuitTrails.org</a> and connect with The Circuit Trails on
+                                        <a class="one" href="https://www.facebook.com/TheCircuitTrails"
+                                            target="_blank">Facebook </a><span class="icon icon-fbD"></span>, <a
+                                            class="one" href="https://twitter.com/circuittrails" target="_blank">Twitter
+                                        </a><span class="icon icon-twitterD"></span> and <a class="one"
+                                            href="https://www.instagram.com/thecircuittrails/" target="_blank">Instagram
+                                        </a><span class="icon icon-instagramD"></span> to find out what is happening
+                                        <span
+                                            style="color:#8dc63f;font-weight: bold;font-size: 140%">#onthecircuit</span>.
+                                    </p>
+                                    <hr>
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object" src="img/existing2.png"
+                                                style="height:13px;width:63px; margin-top:2px">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These
+                                                trails are open for use so get out there and explore them!</h5>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object" src="img/inprogress.png"
+                                                style="height:13px;width:63px; margin-top:12px">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 style="margin-bottom: 0px"><b>In Progress -- </b>These trails are
+                                                currently being designed or built.</h5>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object" src="img/pipeline.png"
+                                                style="height:13px;width:63px; margin-top:12px">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 style="margin-bottom: 0px"><b>Pipeline -- </b>DVRPC, local governments,
+                                                and non-profit organizations are actively working to move these trails
+                                                forward by conducting studies, acquiring rights-of-way, engaging local
+                                                communities, and laying the groundwork to obtain funding for future
+                                                design and construction.</h5>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object" src="img/planned2.png"
+                                                style="height:13px;width:63px; margin-top:12px">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 style="margin-bottom: 0px"><b>Planned -- </b>These trails are documented
+                                                in local, county or regional plans. They represent excellent
+                                                opportunities for regional-scale, multi-use trails. Studies or plans may
+                                                have been prepared for these trails, but a sponsor is not actively
+                                                working to move them forward.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="contact">
+                                    <p>
+                                        <strong>Christopher Linn, AICP</strong>
+                                        <br />
+                                        Manager
+                                        <br />
+                                        Office of Environmental Planning
+                                        <br />
+                                        Phone: 215-238-2873
+                                        <br />
+                                        <a class="one" href="mailto:clinn@dvrpc.org">clinn@dvrpc.org </a>
+                                    </p>
+                                </div>
+                                <div class="tab-pane fade" id="disclaimer">
+                                    <p style="color:#666666">
+                                        This web page is a public resource of general information. The Delaware Valley
+                                        Regional Planning Commission (DVRPC) makes no warranty, representation, or
+                                        guarantee as to the content, sequence, accuracy, timeliness, or completeness of
+                                        any of the spatial data or database information provided herein. DVRPC and
+                                        partner state, local, and other agencies shall assume no liability for errors,
+                                        omissions, or inaccuracies in the information provided regardless of how caused;
+                                        or any decision made or action taken or not taken by any person relying on any
+                                        information or data furnished within.
+                                    </p>
+                                </div>
 
- <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbCFq-smLpXv9rmPXbHIgnv9V-xP3onkU&callback=initMap"
+                            </div><!-- /#aboutTabsContent .tab-content -->
+                        </div><!-- /.clearfix -->
+                    </div><!-- /.modal-body -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script> -->
+        <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+        <script type="text/javascript"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvK54P-Pb3skEYDLFVoRnSTLtRyG5GJ6U"></script>
+        <!--  <script src="https://maps.googleapis.com/maps/api/js"></script> -->
+        <script type="text/javascript" src="js/keydragzoom.js"></script>
+        <script type="text/javascript" src="js/numeral.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+
+        <script>var _gaq = [['_setAccount', 'UA-9825778-1'], ['_trackPageview']]; (function (d) { var g = d.createElement('script'), s = d.scripts[0]; g.src = '//www.google-analytics.com/ga.js'; s.parentNode.insertBefore(g, s) }(document))</script>
+
+        <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbCFq-smLpXv9rmPXbHIgnv9V-xP3onkU&callback=initMap"
   type="text/javascript"></script> -->
 
-  </body>
+</body>
+
 </html>
