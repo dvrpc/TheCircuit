@@ -103,7 +103,8 @@
             <span>
                 <a href="//www.dvrpc.org" target="_new"><img class="pull-left" style="margin:10px 0px 0px 15px"
                         src="img/dvrpc_logo_small.png" /></a>
-                <img class="pull-left" style="margin:0px 0px 0px 10px" src="img/banner_long.png" />
+                <!-- 7/27/22 edits -->
+                <img id="banner-image" class="pull-left" style="margin:0px 0px 0px 10px" src="img/banner_long.png" />
                 <!--   <a class="navbar-brand" href="#">The Circuit - Greater Philadelphia's Regional Trail Network</a> -->
             </span>
         </div>
@@ -131,76 +132,130 @@
                         <li id="zoomToStudy9"><a href="javascript:void(0);">&nbsp;&nbsp; Mercer County</a></li>
                     </ul>
                 </li>
+
+                <li>
+                    <div class="input-group search-container" style="margin: 5px 0px 0px 10px;">
+                        <input id="address" type="text" placeholder="Enter a street address" class="form-control"
+                            style="width:200px;">
+                        <span class="input-group-addon" onclick="codeAddress()"><i class="glyphicon glyphicon-search"
+                                style="color:black;"></i></span>
+                        <span class="input-group-addon" onclick="deleteOverlays();"><i
+                                class="glyphicon glyphicon-ban-circle" style="color:black;"></i></span>
+                    </div>
+                </li>
             </ul>
         </div>
         <!--/.navbar-collapse -->
     </div>
 
     <div class="row" id="container">
+
         <div id="info-bar">
             <b>Information</b><em> (click trail)</em>
         </div>
-        <div class="col-sm-8 col-md-10 col-lg-10" id="map">
-            <div id='title'></div>
-            <div id="loading" style="display: block;">
-                <div class="loading-indicator">
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar progress-bar-info" style="width: 100%"></div>
-                    </div>
-                </div>
+
+        <div class="info-bar2">
+            <!-- 7/27/22 edits  -->
+            <div style="display: flex">
+                <h3 style="margin-top: -1px;color:#008192;">Trail Status</h3>
+                <button id="mobileButton" style="margin-left: auto" onclick="collapseControls(event)">collapse</button>
             </div>
+            <div id="majorRoads" style="float: left">
+                <div class="checkbox">
+                    <label>
+                        <input id="Existing" type="checkbox" onClick="toggleLayer('Existing','Existing')" checked>
+                        <img src='img/existing2.png' width='40' height='8'> &nbsp;Existing<br>
+                        <p style='margin-left: 48px;'><i>Existentes</i></p>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="InProgress" type="checkbox" onClick="toggleLayer('In Progress','InProgress')"
+                            checked>
+                        <img src='img/inprogress.png' width='40' height='8'> &nbsp;In Progress
+                        <br>
+                        <p style='margin-left: 48px;'><i>En progreso</i></p>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="Pipeline" type="checkbox" onClick="toggleLayer('Pipeline','Pipeline')" checked>
+                        <img src='img/pipeline.png' width='40' height='8'> &nbsp;Pipeline
+                        <br>
+                        <p style='margin-left: 48px;'><i>A continuación</i></p>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="Planned" type="checkbox" onClick="toggleLayer('Planned','Planned')" checked>
+                        <img src='img/planned2.png' width='40' height='8'> &nbsp;Planned
+                        <br>
+                        <p style='margin-left: 48px;'><i>Planeados</i></p>
+                    </label>
+                </div>
+                <p>For more information about The Circuit Trails visit: <a href="https://circuittrails.org"
+                        target="_new">CircuitTrails.org </a></p>
+            </div>
+
         </div>
 
-        <div class="col-sm-4 col-md-2 col-lg-2" id="sidebar" style="padding: 10px; overflow: auto;">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <span class="small text-muted" style="color:white"><strong>Data Layers</strong></span>
-                </div>
-                <div id="overlay-layers" class="panel-collapse collapse in">
-                    <div class="panel-body" style="padding: 0px 15px;">
-                        <!--   <h3 style="color:#8dc63f;">The Circuit</h3> -->
-                        <h3 style="color:#008192;">Trail Status</h3>
+        <div class="col-sm-12 col-md-12 col-lg-12" id="map"> </div>
+
+        <!--<div class="col-sm-4 col-md-2 col-lg-2" id="sidebar" style="padding: 10px; overflow: auto;">
+    		<div class="panel panel-primary">
+    			<div class="panel-heading" >
+    			   <span class="small text-muted" style="color:white"><strong>Data Layers</strong></span>
+                </div>	
+				<div id="overlay-layers" class="panel-collapse collapse in">
+	                <div class="panel-body" style="padding: 0px 15px;">  									  	
+	               
+                       <h3 style="color:#008192;">Trail Status</h3>
                         <div id="majorRoads" style="float: left">
                             <div class="checkbox">
                                 <label>
-                                    <input id="Existing" type="checkbox" onClick="toggleLayer('Existing','Existing')"
-                                        checked>
-                                    <img src='img/existing2.png' width='40' height='8'> &nbsp;Existing
+                                    <input id="Existing" type="checkbox"  onClick="toggleLayer('Existing','Existing')" checked>
+                                    <img src='img/existing2.png' width='40' height='8'> &nbsp;Existing<br>
+                                    <p style='margin-left: 48px;'><i>Existentes</i></p>
                                 </label>
-                            </div>
+                            </div>   	
                             <div class="checkbox">
                                 <label>
-                                    <input id="InProgress" type="checkbox"
-                                        onClick="toggleLayer('In Progress','InProgress')" checked>
+                                    <input id="InProgress" type="checkbox"  onClick="toggleLayer('In Progress','InProgress')" checked>
                                     <img src='img/inprogress.png' width='40' height='8'> &nbsp;In Progress
+                                    <br>
+                                    <p style='margin-left: 48px;'><i>En progreso</i></p>
                                 </label>
-                            </div>
+                            </div>  
                             <div class="checkbox">
                                 <label>
-                                    <input id="Pipeline" type="checkbox" onClick="toggleLayer('Pipeline','Pipeline')"
-                                        checked>
+                                    <input id="Pipeline" type="checkbox"  onClick="toggleLayer('Pipeline','Pipeline')" checked>
                                     <img src='img/pipeline.png' width='40' height='8'> &nbsp;Pipeline
+                                    <br>
+                                    <p style='margin-left: 48px;'><i>A continuación</i></p>
                                 </label>
-                            </div>
+                            </div> 	
                             <div class="checkbox">
                                 <label>
-                                    <input id="Planned" type="checkbox" onClick="toggleLayer('Planned','Planned')"
-                                        checked>
+                                    <input id="Planned" type="checkbox"  onClick="toggleLayer('Planned','Planned')" checked>
                                     <img src='img/planned2.png' width='40' height='8'> &nbsp;Planned
+                                    <br>
+                                    <p style='margin-left: 48px;'><i>Planeados</i></p>
                                 </label>
-                            </div>
-
+                            </div>   
+                        <p>For more information about The Circuit Trails visit: <a href="https://circuittrails.org" target="_new" >CircuitTrails.org </a></p>                       
                         </div>
+                      
+    
+	            </div>
+			</div>
+                       
+        </div>
 
-                    </div><!-- #overlay-layers .panel-collapse collapse in -->
-                </div><!-- .panel panel-primary -->
-
-            </div><!-- #Sidebar (Entire Sidebar) -->
-        </div><!-- #Container -->
-
+    </div>
+-->
         <!-- About Modal -->
         <div class="modal fade" id="aboutModal">
-            <div class="modal-dialog" style="width:620px">
+            <div class="modal-dialog" style="width:710px">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button class="close" aria-hidden="true" data-dismiss="modal" type="button"
@@ -237,6 +292,22 @@
                                         <span
                                             style="color:#8dc63f;font-weight: bold;font-size: 140%">#onthecircuit</span>.
                                     </p>
+                                    <p><i>El Circuito es el sistema de senderos de uso múltiple de la Gran Filadelfia
+                                            conectando a la gente con trabajos, comunidades, parques, y ríos. Gobiernos,
+                                            organizaciones sin fines de lucro y fundaciones han colaborado para
+                                            completar más de 300 millas de la concebida red regional de 750 millas. Cada
+                                            año se agregan más millas a la red. Aprenda más en <a class="one"
+                                                href="http://www.CircuitTrails.org/"
+                                                target="_blank">CircuitTrails.org</a> y conectese a The Circuit Trails
+                                            en <a class="one" href="https://www.facebook.com/TheCircuitTrails"
+                                                target="_blank">Facebook</a><span class="icon icon-fbD"></span>, <a
+                                                class="one" href="https://twitter.com/circuittrails" target="_blank">
+                                                Twitter </a><span class="icon icon-twitterD"></span> y <a class="one"
+                                                href="https://www.instagram.com/thecircuittrails/"
+                                                target="_blank">Instagram </a><span class="icon icon-instagramD"></span>
+                                            para enterarse de lo que anda pasando <span
+                                                style="color:#8dc63f;font-weight: bold;font-size: 140%">#enelcircuito</span>.</i>
+                                    </p>
                                     <hr>
                                     <div class="media">
                                         <a class="pull-left" href="#">
@@ -246,6 +317,11 @@
                                         <div class="media-body">
                                             <h5 style="margin-bottom: 0px;margin-top:2px;"><b>Existing -- </b>These
                                                 trails are open for use so get out there and explore them!</h5>
+                                            <h5 style="margin-bottom:0px;margin-top:2px;font-style:italic;">
+                                                <b>Existentes -- </b>Estos senderos están abiertos para su uso, ¡sal a
+                                                explorarlos!
+                                            </h5>
+
                                         </div>
                                     </div>
                                     <div class="media">
@@ -256,6 +332,9 @@
                                         <div class="media-body">
                                             <h5 style="margin-bottom: 0px"><b>In Progress -- </b>These trails are
                                                 currently being designed or built.</h5>
+                                            <h5 style="margin-bottom: 0px;margin-top:2px;font-style:italic;"><b>En
+                                                    progreso -- </b>Estos senderos se están diseñando o construyendo
+                                                actualmente.</h5>
                                         </div>
                                     </div>
                                     <div class="media">
@@ -269,6 +348,12 @@
                                                 forward by conducting studies, acquiring rights-of-way, engaging local
                                                 communities, and laying the groundwork to obtain funding for future
                                                 design and construction.</h5>
+                                            <h5 style="margin-bottom: 0px;margin-top:2px;font-style:italic;"><b>A
+                                                    continuación -- </b>La Comisión de Planificación Regional del Valle
+                                                Delaware (DVRPC), gobiernos locales, y organizaciones sin fines de lucro
+                                                están trabajando activamente para avanzar estos senderos. Están
+                                                realizando estudios, adquiriendo vías de tránsito, dirigiéndose a
+                                                comunidades locales, y financiando el futuro diseño y construcción.</h5>
                                         </div>
                                     </div>
                                     <div class="media">
@@ -282,20 +367,27 @@
                                                 opportunities for regional-scale, multi-use trails. Studies or plans may
                                                 have been prepared for these trails, but a sponsor is not actively
                                                 working to move them forward.</h5>
+                                            <h5 style="margin-bottom: 0px;margin-top:2px;font-style:italic;">
+                                                <b>Planeados -- </b>Estos senderos están documentados en los planes de
+                                                la localidad, condado, o región. Presentan excelentes oportunidades para
+                                                senderos de múltiple uso y de escala regional. Es posible que ya hayan
+                                                estudios o planes preparados para estos senderos, pero al momento, no
+                                                tienen un promotor que esté trabajando para avanzarlos.
+                                            </h5>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="contact">
                                     <p>
-                                        <strong>Christopher Linn, AICP</strong>
+                                        <strong>Shawn Megill Legendre, AICP</strong>
                                         <br />
-                                        Manager
+                                        Manager, Regional Trails Program
                                         <br />
                                         Office of Environmental Planning
                                         <br />
-                                        Phone: 215-238-2873
+                                        Phone: 215-238-2934
                                         <br />
-                                        <a class="one" href="mailto:clinn@dvrpc.org">clinn@dvrpc.org </a>
+                                        <a class="one" href="mailto:slegendre@dvrpc.org">slegendre@dvrpc.org </a>
                                     </p>
                                 </div>
                                 <div class="tab-pane fade" id="disclaimer">
@@ -309,6 +401,16 @@
                                         or any decision made or action taken or not taken by any person relying on any
                                         information or data furnished within.
                                     </p>
+                                    <p><i>Esta página web es un recurso público de información general. La Comisión de
+                                            Planificación Regional del Valle Delaware (DVRPC) no expresa ninguna
+                                            garantía, representación, o promesa con respecto al contenido, secuencia,
+                                            precisión, actualización o completud de cualquiera de los datos espaciales o
+                                            información de base de datos suministrados aquí. DVRPC y sus asociadas
+                                            agencias estatales, locales, y otros socios no asumirán responsabilidad
+                                            ninguna por errores, omisiones, o inexactitudes presentes en la información
+                                            providenciada, independientemente de cómo se produjeron; o, por cualquiera
+                                            decisión hecha o acción tomada o no tomada por cualquier persona que dependa
+                                            de cualquier información o dato suministrado aquí</i></p>.
                                 </div>
 
                             </div><!-- /#aboutTabsContent .tab-content -->
@@ -325,14 +427,14 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvK54P-Pb3skEYDLFVoRnSTLtRyG5GJ6U"></script>
-        <!--  <script src="https://maps.googleapis.com/maps/api/js"></script> -->
+        <!--  <script src="https://maps.googleapis.com/maps/api/js"></script>  -->
         <script type="text/javascript" src="js/keydragzoom.js"></script>
         <script type="text/javascript" src="js/numeral.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 
         <script>var _gaq = [['_setAccount', 'UA-9825778-1'], ['_trackPageview']]; (function (d) { var g = d.createElement('script'), s = d.scripts[0]; g.src = '//www.google-analytics.com/ga.js'; s.parentNode.insertBefore(g, s) }(document))</script>
 
-        <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbCFq-smLpXv9rmPXbHIgnv9V-xP3onkU&callback=initMap"
+        <!--   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbCFq-smLpXv9rmPXbHIgnv9V-xP3onkU&callback=initMap"
   type="text/javascript"></script> -->
 
 </body>
