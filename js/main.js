@@ -214,7 +214,16 @@ function initialize() {
       data4.setStyle(styles);
       data4.setMap(map);
     }
-  );
+  ).done(function (data) {
+    const { features } = data;
+    const sums = {};
+    features.map((feature) => {
+      const { circuit, length } = feature.properties;
+      if (!sums[circuit]) sums[circuit] = length;
+      else sums[circuit] += length;
+    });
+    console.log(sums);
+  });
 
   data4.addListener("click", function (e) {
     data4.revertStyle();
