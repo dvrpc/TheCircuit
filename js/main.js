@@ -17,9 +17,14 @@ $(document).ready(function () {
         const checkbox = document.querySelector(
           `#${feature.attributes.circuit.replace(" ", "")}`
         );
-        checkbox.parentElement.querySelector(
-          ".item-text > span"
-        ).firstChild.textContent += ` (${feature.attributes.sum_length} miles)`;
+        const textBox = checkbox.parentElement.querySelector(".item-text");
+
+        textBox.querySelector(
+          "span"
+        ).textContent += ` (${feature.attributes.sum_length.toFixed(1)} miles)`;
+        textBox.lastChild.textContent += `(${feature.attributes.sum_length.toFixed(
+          1
+        )} millas) `;
       });
     });
   //OPEN ABOUT DIALOG
