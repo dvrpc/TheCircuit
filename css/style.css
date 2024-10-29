@@ -224,8 +224,8 @@ hr {
   right: 10px;
   z-index: 1;
   padding: 10px;
-  width: 250px;
-  height: 300px;
+  width: 300px;
+  height: fit-content;
   border-style: solid;
   border-color: #008192;
   background-color: white;

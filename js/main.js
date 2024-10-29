@@ -7,6 +7,26 @@ var markersArray = [];
 var region = new google.maps.LatLng(40.08, -75.170669);
 
 $(document).ready(function () {
+  fetch(
+    "https://arcgis.dvrpc.org/portal/rest/services/Transportation/CircuitTrails/FeatureServer/0/query?where=1=1&groupByFieldsForStatistics=circuit&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22length%22%2C%22outStatisticFieldName%22%3A%22SUM_length%22%7D%5D&f=json"
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      const { features } = data;
+      features.map((feature) => {
+        const checkbox = document.querySelector(
+          `#${feature.attributes.circuit.replace(" ", "")}`
+        );
+        const textBox = checkbox.parentElement.querySelector(".item-text");
+
+        textBox.querySelector(
+          "span"
+        ).textContent += ` (${feature.attributes.sum_length.toFixed(1)} miles)`;
+        textBox.lastChild.textContent += `(${feature.attributes.sum_length.toFixed(
+          1
+        )} millas) `;
+      });
+    });
   //OPEN ABOUT DIALOG
   $("#aboutModal").modal();
 });
