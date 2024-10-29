@@ -8,23 +8,24 @@ var region = new google.maps.LatLng(40.08, -75.170669);
 
 $(document).ready(function () {
   fetch(
-    "https://arcgis.dvrpc.org/portal/rest/services/Transportation/CircuitTrails/FeatureServer/0/query?where=1=1&groupByFieldsForStatistics=circuit&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22length%22%2C%22outStatisticFieldName%22%3A%22SUM_length%22%7D%5D&f=json"
+    "https://arcgis.dvrpc.org/portal/rest/services/Transportation/CircuitTrails/FeatureServer/0/query?where=1=1&groupByFieldsForStatistics=circuit&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22length%22%2C%22outStatisticFieldName%22%3A%22SUM_length%22%7D%5D&f=json",
   )
     .then((res) => res.json())
     .then((data) => {
       const { features } = data;
       features.map((feature) => {
-        const checkbox = document.querySelector(
-          `#${feature.attributes.circuit.replace(" ", "")}`
-        );
-        const textBox = checkbox.parentElement.querySelector(".item-text");
+        if (feature.attributes.circuit) {
+          const checkbox = document.querySelector(
+            `#${feature.attributes.circuit.replace(" ", "")}`,
+          );
+          const textBox = checkbox.parentElement.querySelector(".item-text");
 
-        textBox.querySelector(
-          "span"
-        ).textContent += ` (${feature.attributes.sum_length.toFixed(1)} miles)`;
-        textBox.lastChild.textContent += `(${feature.attributes.sum_length.toFixed(
-          1
-        )} millas) `;
+          textBox.querySelector("span").textContent +=
+            ` (${feature.attributes.sum_length.toFixed(1)} miles)`;
+          textBox.lastChild.textContent += `(${feature.attributes.sum_length.toFixed(
+            1,
+          )} millas) `;
+        }
       });
     });
   //OPEN ABOUT DIALOG
@@ -58,7 +59,7 @@ function codeAddress() {
   var address = document.getElementById("address").value;
   var bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(39.867004, -75.280303),
-    new google.maps.LatLng(40.137992, -74.955763)
+    new google.maps.LatLng(40.137992, -74.955763),
   );
 
   geocoder.geocode(
@@ -75,7 +76,7 @@ function codeAddress() {
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
-    }
+    },
   );
 }
 // Deletes all markers in the array by removing references to them
@@ -240,7 +241,7 @@ function initialize() {
         },
       });
       data.addGeoJson(d);
-    }
+    },
   );
 
   /*  var addListenersOnPolygon = function(feature) {
@@ -277,7 +278,7 @@ function initialize() {
       });
       dataMCD.addGeoJson(d);
       //  addListenersOnPolygon(dataMCD);
-    }
+    },
   );
 
   var dataColors = {
@@ -302,7 +303,7 @@ function initialize() {
       data4.addGeoJson(d, { idPropertyName: "objectid" });
       data4.setStyle(styles);
       data4.setMap(map);
-    }
+    },
   );
 
   data4.addListener("click", function (e) {
@@ -385,63 +386,63 @@ function initialize() {
 
   $("#zoomToStudy1").click(function () {
     map.setCenter(
-      new google.maps.LatLng(40.336933676997319, -75.106870407001679)
+      new google.maps.LatLng(40.336933676997319, -75.106870407001679),
     );
     map.setZoom(10);
   });
 
   $("#zoomToStudy2").click(function () {
     map.setCenter(
-      new google.maps.LatLng(39.973209680949878, -75.748451366853885)
+      new google.maps.LatLng(39.973209680949878, -75.748451366853885),
     );
     map.setZoom(10);
   });
 
   $("#zoomToStudy3").click(function () {
     map.setCenter(
-      new google.maps.LatLng(39.916606269175929, -75.398773932333029)
+      new google.maps.LatLng(39.916606269175929, -75.398773932333029),
     );
     map.setZoom(11);
   });
 
   $("#zoomToStudy4").click(function () {
     map.setCenter(
-      new google.maps.LatLng(40.210850123794955, -75.367334983140267)
+      new google.maps.LatLng(40.210850123794955, -75.367334983140267),
     );
     map.setZoom(10);
   });
 
   $("#zoomToStudy5").click(function () {
     map.setCenter(
-      new google.maps.LatLng(40.007663105527399, -75.13417520195253)
+      new google.maps.LatLng(40.007663105527399, -75.13417520195253),
     );
     map.setZoom(11);
   });
 
   $("#zoomToStudy6").click(function () {
     map.setCenter(
-      new google.maps.LatLng(39.877816891219368, -74.668206522675518)
+      new google.maps.LatLng(39.877816891219368, -74.668206522675518),
     );
     map.setZoom(10);
   });
 
   $("#zoomToStudy7").click(function () {
     map.setCenter(
-      new google.maps.LatLng(39.803681644785684, -74.959910690527067)
+      new google.maps.LatLng(39.803681644785684, -74.959910690527067),
     );
     map.setZoom(10);
   });
 
   $("#zoomToStudy8").click(function () {
     map.setCenter(
-      new google.maps.LatLng(39.71707679705645, -75.141080460542355)
+      new google.maps.LatLng(39.71707679705645, -75.141080460542355),
     );
     map.setZoom(10);
   });
 
   $("#zoomToStudy9").click(function () {
     map.setCenter(
-      new google.maps.LatLng(40.283472954035688, -74.701779040344604)
+      new google.maps.LatLng(40.283472954035688, -74.701779040344604),
     );
     map.setZoom(11);
   });
@@ -453,7 +454,7 @@ function initialize() {
   // bounds of the desired area
   var allowedBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(38.689713, -78.275104), // Southwest
-    new google.maps.LatLng(41.463231, -72.336994) // Northeast
+    new google.maps.LatLng(41.463231, -72.336994), // Northeast
   );
   var lastValidCenter = map.getCenter();
 
