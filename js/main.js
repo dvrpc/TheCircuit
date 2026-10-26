@@ -259,6 +259,13 @@ function initialize() {
       var TypeColor = "#329aa7";
     }
 
+      if (e.feature.getProperty("lrp") == null) {
+      var LRP = "";
+    } else {
+      var LRP =
+        "<b>Included in Long-Range Plan:</b>Yes<br>";
+    }
+
     var content =
       '<div id="infoheader-text" style="background-color: ' +
       TypeColor +
@@ -277,7 +284,8 @@ function initialize() {
       e.feature.getProperty("circuit") +
       "<br>" +
       SURFACE +
-      FACILITY;
+      FACILITY +
+      LRP;
 
     $("#info-bar").html(content);
   });
