@@ -341,7 +341,7 @@ function initialize() {
       var LRP = "";
     } else {
       var LRP =
-        "<b>Long-Range Plan:</b> <i>Update: Connections 2050</i><br>";
+        "<b>Included in the Long-Range Plan:</b> Yes<br>";
     }
 
     if (e.feature.getProperty("nmt_911") == "Y") {
@@ -380,8 +380,8 @@ function initialize() {
       "<br>" +
       SURFACE +
       FACILITY +
+      LRP +
       ECG +
-      LRP 
       Trail9_11;
 
     $("#info-bar").html(content);
